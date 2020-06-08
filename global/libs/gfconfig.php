@@ -12,7 +12,7 @@ define('SSL', $isSecure);
 
 $REQUEST_PROTOCOL = $isSecure ? 'https://' : 'http://';
 define('ROOTHOST',$REQUEST_PROTOCOL.$_SERVER['HTTP_HOST'].'/cursus/');
-define('ROOTHOST_ADMIN',$REQUEST_PROTOCOL.$_SERVER['HTTP_HOST'].'/sys/');
+define('ROOTHOST_ADMIN',$REQUEST_PROTOCOL.$_SERVER['HTTP_HOST'].'/cursus/admin/');
 define('WEBSITE',$REQUEST_PROTOCOL.$_SERVER['HTTP_HOST'].'/');
 define('ROOT_MEDIA','/home/admin/web/openlearn.5gmedia.vn/public_html/uploads/media/');
 define('BASEVIRTUAL0','/home/admin/web/openlearn.5gmedia.vn/public_html/uploads/');

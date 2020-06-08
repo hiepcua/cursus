@@ -24,70 +24,210 @@ if(isset($_POST['txtuser'])){
 }
 ?>
 <style type="text/css">
-	@import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
-	.login-block{
-		background: #DE6262;  /* fallback for old browsers */
-		background: -webkit-linear-gradient(to bottom, #FFB88C, #DE6262);  /* Chrome 10-25, Safari 5.1-6 */
-		background: linear-gradient(to bottom, #FFB88C, #DE6262); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-		float:left;
-		width:100%;
-		padding : 50px 0;
+	.sign_in_up_bg {
+		/*background: #f7f7f7 !important;*/
+		padding-top: 100px;
+		position: relative;
+		width: 100%;
 	}
-	.banner-sec{background:url(https://static.pexels.com/photos/33972/pexels-photo.jpg)  no-repeat left bottom; background-size:cover; min-height:500px; border-radius: 0 10px 10px 0; padding:0;}
-	.container{background:#fff; border-radius: 10px; box-shadow:15px 20px 0px rgba(0,0,0,0.1);}
-	.carousel-inner{border-radius:0 10px 10px 0;}
-	.carousel-caption{text-align:left; left:5%;}
-	.login-sec{padding: 50px 30px; position:relative;}
-	.login-sec .copy-text{position:absolute; width:80%; bottom:20px; font-size:13px; text-align:center;}
-	.login-sec .copy-text i{color:#FEB58A;}
-	.login-sec .copy-text a{color:#E36262;}
-	.login-sec h2{margin-bottom:30px; font-weight:800; font-size:30px; color: #DE6262;}
-	.login-sec h2:after{content:" "; width:100px; height:5px; background:#FEB58A; display:block; margin-top:20px; border-radius:3px; margin-left:auto;margin-right:auto}
-	.btn-login{background: #DE6262; color:#fff; font-weight:600;}
-	.banner-text{width:70%; position:absolute; bottom:40px; padding-left:20px;}
-	.banner-text h2{color:#fff; font-weight:600;}
-	.banner-text h2:after{content:" "; width:100px; height:5px; background:#FFF; display:block; margin-top:20px; border-radius:3px;}
-	.banner-text p{color:#fff;}
+	.sign_form {
+		background: #fff;
+		border-radius: 10px;
+		padding: 50px 50px 30px;
+		box-shadow: -0.083333333in 0.5pc 1.125pc -7px rgba(25,42,70,.13);
+		flex: 1;
+		float: left;
+		width: 100%;
+		margin-top: 0;
+		text-align: center;
+	}
+	.login-btn {
+		font-size: 14px;
+		margin-top: 30px;
+		font-weight: 400;
+		font-family: 'Roboto', sans-serif;
+		color: #fff;
+		background: #ed2a26;
+		border-radius: 20px;
+		text-align: center;
+		border: 0;
+		width: 100%;
+		height: 40px;
+	}
+	.sign_form input {
+		padding-left: 4.2em!important;
+		padding-right: 1em!important;
+		height: 40px;
+		font-size: 14px;
+		font-weight: 400;
+		font-family: 'Roboto', sans-serif;
+		border-radius: 500rem;
+	}
+	.ui.form.checkbox_sign {
+		text-align: left;
+	}
+	.ui.form.checkbox_sign {
+		text-align: left;
+	}
+	.ui.checkbox {
+		position: relative;
+		display: inline-block;
+		-webkit-backface-visibility: hidden;
+		backface-visibility: hidden;
+		outline: 0;
+		vertical-align: baseline;
+		font-style: normal;
+		min-height: 17px;
+		font-size: 1rem;
+		line-height: 17px;
+		min-width: 17px;
+	}
+	.ui.form.checkbox_sign {
+		text-align: left;
+	}
+	.sign_form {
+		background: #fff;
+		border-radius: 10px;
+		padding: 50px 50px 30px;
+		box-shadow: 0in 1pc 1.125pc -5px rgba(25,42,70,.13)
+		flex: 1;
+		float: left;
+		width: 100%;
+		margin-top: 0;
+		text-align: center;
+	}
+	.ui.form input[type=checkbox], .ui.form textarea {
+		vertical-align: top;
+	}
+	.ui.checkbox input[type=checkbox], .ui.checkbox input[type=radio] {
+		cursor: pointer;
+		position: absolute;
+		top: 0;
+		left: 0;
+		opacity: 0!important;
+		outline: 0;
+		z-index: 3;
+		width: 17px;
+		height: 17px;
+	}
+	.ui.checkbox input.hidden {
+		z-index: -1;
+	}
+	.sign_form input {
+		padding-left: 4.2em!important;
+		padding-right: 1em!important;
+		height: 40px;
+		font-size: 14px;
+		font-weight: 400;
+		font-family: 'Roboto', sans-serif;
+		border-radius: 500rem;
+	}
+	.sign_form .header{
+		margin-bottom: 50px;
+	}
+	.ui.checkbox input.hidden+label {
+		cursor: pointer;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+	.ui.checkbox.mncheck .box, .ui.checkbox.mncheck label {
+		font-family: 'Roboto', sans-serif !important;
+		color: #333;
+		line-height: 20px;
+	}
+	.ui.checkbox.mncheck .box:before, .ui.checkbox.mncheck label:before {
+		border-radius: 100%;
+		width: 18px !important;
+		height: 18px !important;
+		margin-top: 1px;
+	}
+	.ui.checkbox .box:before, .ui.checkbox label:before {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 17px;
+		height: 17px;
+		content: '';
+		background: #fff;
+		border-radius: .21428571rem;
+		-webkit-transition: border .1s ease,opacity .1s ease,-webkit-transform .1s ease,-webkit-box-shadow .1s ease;
+		transition: border .1s ease,opacity .1s ease,-webkit-transform .1s ease,-webkit-box-shadow .1s ease;
+		transition: border .1s ease,opacity .1s ease,transform .1s ease,box-shadow .1s ease;
+		transition: border .1s ease,opacity .1s ease,transform .1s ease,box-shadow .1s ease,-webkit-transform .1s ease,-webkit-box-shadow .1s ease;
+		border: 1px solid #d4d4d5;
+	}
+	.ui.checkbox .box, .ui.checkbox label {
+		cursor: auto;
+		position: relative;
+		display: block;
+		padding-left: 1.85714em;
+		outline: 0;
+		font-size: 1em;
+	}
+	.ui.icon.input>i.icon:not(.link) {
+		pointer-events: none;
+	}
+	.ui.input {
+		position: relative;
+		font-weight: 400;
+		font-style: normal;
+		color: rgba(0,0,0,.87);
+	}
+	.ui[class*="left icon"].input>i.icon {
+		right: auto;
+		left: 1px;
+		border-radius: .28571429rem 0 0 .28571429rem;
+	}
+	.ui.icon.input>i.icon {
+		cursor: default;
+		position: absolute;
+		line-height: 1;
+		text-align: center;
+		top: 12px;
+		right: 0px;
+		left: 10px;
+		height: 100%;
+		width: 2.67142857em;
+		opacity: .5;
+		border-radius: 0 .28571429rem .28571429rem 0;
+		-webkit-transition: opacity .3s ease;
+		transition: opacity .3s ease;
+	}
 </style>
 
 <!------ Include the above in your HEAD tag ---------->
-<section class="login-block">
+<section class="login-block sign_in_up_bg">
 	<div class="container">
-		<div class="row">
-			<div class="col-md-4 login-sec">
-				<h2 class="text-center">Đăng nhập</h2>
-				<div class="form-group text-center" style="color:red"><b><?php echo $err;?></b></div>
-				<form id="frmlogin" class="login-form" method="post" action="" autocomplete="off">
-					<div class="form-group">
-						<label class="text-uppercase">Tên đăng nhập</label>
-						<input type="text" name="txtuser" class="form-control" required>
+		<div class="row justify-content-lg-center justify-content-md-center">
+			<div class="col-lg-6 col-md-8 login-sec">
+				<div class="sign_form">
+					<div class="header">
+						<h2 class="text-center">Đăng nhập</h2>
+						<p>Log In to Your Account!</p>
+						<div class="mess" style="color: red"></div>
 					</div>
-					<div class="form-group">
-						<label class="text-uppercase">Mật khẩu</label>
-						<input type="password" name="txtpass" class="form-control" required>
-					</div>
-					<div class="form-check">
-						<!-- <label class="form-check-label">
-							<input type="checkbox" class="form-check-input" name="remember">
-							<small>Giữ đăng nhập</small>
-						</label> -->
-						<button type="submit" class="btn btn-login float-right">Đăng nhập</button>
-					</div>
-				</form>
-			</div>
-			<div class="col-md-8 banner-sec">
-				<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-					<div class="carousel-inner" role="listbox">
-						<div class="carousel-item active">
-							<img class="d-block img-fluid" src="https://static.pexels.com/photos/33972/pexels-photo.jpg" alt="First slide">
-							<div class="carousel-caption d-none d-md-block">
-								<div class="banner-text">
-									<h2>CMS - Admin</h2>
-									<p>Hệ thống quản trị nội dung nhằm mục đích giúp dễ dàng quản lý, chỉnh sửa nội dung</p>
-								</div>	
+					<div class="form-group text-center" style="color:red"><b><?php echo $err;?></b></div>
+					<form id="frmlogin" class="login-form" method="post" action="" autocomplete="off">
+						<div class="form-group ui left icon input">
+							<input type="text" name="txtuser" class="form-control" required placeholder="Username">
+							<i class="fa fa-address-book icon uil" aria-hidden="true"></i>
+						</div>
+						<div class="form-group ui left icon input">
+							<input type="password" name="txtpass" class="form-control" required placeholder="Password">
+							<i class="fa fa-key icon uil" aria-hidden="true"></i>
+						</div>
+						<div class="ui form mt-30 checkbox_sign">
+							<div class="inline field">
+								<div class="ui checkbox mncheck">
+									<input type="checkbox" name="" id="remember" tabindex="0" class="hidden">
+									<label>Remember Me</label>
+								</div>
 							</div>
 						</div>
-					</div>	   
+						<button type="submit" class="btn login-btn">Đăng nhập</button>
+					</form>
 				</div>
 			</div>
 		</div>
