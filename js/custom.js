@@ -18,9 +18,9 @@ $('.menu .item')
 ;
 
 // === checkbox Toggle === //
-// $('.ui.checkbox')
-//   .checkbox()
-// ;
+$('.ui.checkbox')
+  .checkbox()
+;
 
 // === Toggle === //
 $('.enable.button')

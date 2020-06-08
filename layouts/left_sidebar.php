@@ -3,30 +3,30 @@
 		<div class="left_section">
 			<ul>
 				<li class="menu--item">
-					<a href="index.php" class="menu--link active" title="Home">
+					<a href="home" class="menu--link active" title="Home">
 						<i class='uil uil-home-alt menu--icon'></i>
 						<span class="menu--label">Home</span>
 					</a>
 				</li>
 				<li class="menu--item">
-					<a href="live_streams.php" class="menu--link" title="Live Streams">
+					<a href="live_streams" class="menu--link" title="Live Streams">
 						<i class='uil uil-kayak menu--icon'></i>
 						<span class="menu--label">Live Streams</span>
 					</a>
 				</li>
 				<li class="menu--item">
-					<a href="explore.php" class="menu--link" title="Explore">
+					<a href="explore" class="menu--link" title="Explore">
 						<i class='uil uil-search menu--icon'></i>
 						<span class="menu--label">Explore</span>
 					</a>
 				</li>
 				<li class="menu--item">
-					<a href="categories.php" class="menu--link" title="Categories">
+					<a href="categories" class="menu--link" title="Categories">
 						<i class='uil uil-layers menu--icon'></i>
 						<span class="menu--label">Categories</span>
 					</a>
 				</li>
-				<li class="menu--item  menu--item__has_sub_menu">
+				<!-- <li class="menu--item  menu--item__has_sub_menu">
 					<label class="menu--link" title="Tests">
 						<i class='uil uil-clipboard-alt menu--icon'></i>
 						<span class="menu--label">Tests</span>
@@ -48,7 +48,7 @@
 							<a href="http://www.gambolthemes.net/html-items/edututs+/Instructor_Dashboard/my_certificates.html" class="sub_menu--link">My Certification</a>
 						</li>
 					</ul>
-				</li>
+				</li> -->
 				<li class="menu--item">
 					<a href="saved_courses.html" class="menu--link" title="Saved Courses">
 						<i class="uil uil-heart-alt menu--icon"></i>
@@ -153,7 +153,7 @@
 			<div class="left_section pt-2">
 				<ul>
 					<li class="menu--item">
-						<a href="setting.html" class="menu--link" title="Setting">
+						<a href="setting" class="menu--link" title="Setting">
 							<i class='uil uil-cog menu--icon'></i>
 							<span class="menu--label">Setting</span>
 						</a>
@@ -171,7 +171,7 @@
 						</a>
 					</li> -->
 					<li class="menu--item">
-						<a href="feedback.php" class="menu--link" title="Send Feedback">
+						<a href="feedback" class="menu--link" title="Send Feedback">
 							<i class='uil uil-comment-alt-exclamation menu--icon'></i>
 							<span class="menu--label">Send Feedback</span>
 						</a>

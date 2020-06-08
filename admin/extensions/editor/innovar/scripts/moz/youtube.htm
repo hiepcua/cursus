@@ -1,0 +1,84 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="../style/editor.css" rel="stylesheet" type="text/css">
+    <script>
+		var sLangDir=window.opener.oUtil.langDir;
+		document.write("<scr"+"ipt src='../language/"+sLangDir+"/youtube.js'></scr"+"ipt>");
+    </script>
+    <script>writeTitle()</script>
+
+    <style type="text/css">
+        #inpKeywords, #inpURL,#inpWidth,#inpHeight {
+	        border:1px inset #ddd;
+	        font-size:12px;
+	        -moz-border-radius:3px;
+	        -webkit-border-radius:3px;
+	        padding-left:7px;
+            }
+		#lblUrl,#lblW,#lblH { display:inline-block; width:60px; font-size:13px;}
+        .item {width:120px;min-height:100px;display:-moz-inline-stack;display:inline-block;vertical-align:top;zoom:1; *display: inline; _height: 100px;
+        margin:0px 15px 0px -5px;cursor:pointer;padding:10px;text-align:center;vertical-align:middle;}
+
+        .item2 {width:120px;min-height:20px;display:-moz-inline-stack;display:inline-block;vertical-align:top;zoom:1; *display: inline; _height: 20px;
+        background:#000;cursor:pointer;text-align:center;
+        box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.24);
+        -moz-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.24);
+        -webkit-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.24);
+        margin-left:-5px;margin-right:25px;margin-top:10px;margin-bottom:10px;
+        border:#fff 1px solid;padding-top:15px;color:#fff
+        }
+    </style>
+    <script language="javascript" type="text/javascript">
+        function I_Insert() {
+            /* EFFECTS */
+            var sCssText = "";var sSize = "";
+            var sHTML = "<iframe width=\""+document.getElementById("inpWidth").value+"\" height=\""+document.getElementById("inpHeight").value+"\" src=\"" + embedUrl() + "\" frameborder=\"0\" allowfullscreen=\"\"></iframe>";
+            //var sHTML = "<article style=\"" + sCssText + "\" class=\"flex-video\"><iframe " + sSize + " src=\"" + embedUrl() + "\"></iframe></article>";
+			
+			var oEditor=window.opener.oUtil.oEditor;
+			window.opener.oUtil.obj.saveForUndo();  
+			var obj=window.opener.oUtil.obj;
+			obj.insertHTML(sHTML);
+        }
+
+        function embedUrl(){
+            var inputUrl = document.getElementById("inpURL").value;
+            var youRegex = /^http[s]?:\/\/(((www.youtube.com\/watch\?(feature=player_detailpage&)?)v=)|(youtu.be\/))([^#\&\?]*)/;
+            var vimeoRegex = /^.*(vimeo\.com\/)((channels\/[A-z]+\/)|(groups\/[A-z]+\/videos\/)|(video\/))?([0-9]+)\/?/;
+            var youRegexMatches = youRegex.exec(inputUrl);
+            var vimeoRegexMatches = vimeoRegex.exec(inputUrl);
+            if (youRegexMatches != null && youRegexMatches.length >= 7) {
+                var youMatch = youRegexMatches[6];
+                var youUrl = 'http://www.youtube.com/embed/' + youMatch;
+                return youUrl;
+            }
+            if (vimeoRegexMatches != null && vimeoRegexMatches.length >= 7) {
+                var vimeoMatch = vimeoRegexMatches[6];
+
+                var vimeoUrl = 'http://player.vimeo.com/video/' + vimeoMatch;
+                return vimeoUrl;
+            }
+        } 
+    </script>
+
+</head>
+<body onload="loadTxt();" style="overflow:hidden;">
+<div style="clear:left"></div>
+<table cellpadding="0" cellspacing="0" style="margin-left:7px;">
+<tbody><tr>
+<td style="padding-left:20px;padding-top:15px;font-family:Arvo;letter-spacing:1px;text-shadow:1px 1px 1px rgba(255,255,255,0.6);color:#000;text-align:left" valign="top">
+
+    <span id="lblUrl">URL:</span>
+    <input id="inpURL" type="text" value="" style="width:300px;height:23px;"><br>
+	<span id="lblW">Width:</span>
+	<input type="text" name="inpWidth" id="inpWidth" value="560" size=4 class="inpTxt" style="height:23px; margin:5px 0"><br>
+	<span id="lblH">Height:</span>
+	<input type="text" name="inpHeight" id="inpHeight" value="320" size=4 class="inpTxt" style="height:23px; margin:5px 0">
+    <br><br>
+    <input type="button" name="btnCancel" id="btnCancel" value="cancel" onclick="self.close()" class="inpBtn" onmouseover="this.className=&#39;inpBtnOver&#39;;" onmouseout="this.className=&#39;inpBtnOut&#39;" style="width:120px;height:33px;font-size:13px">
+    <input type="button" name="btnInsert" id="btnInsert" value="insert" onclick="I_Insert();self.close()" class="inpBtn" onmouseover="this.className=&#39;inpBtnOver&#39;;" onmouseout="this.className=&#39;inpBtnOut&#39;" style="width:120px;height:33px;font-size:13px">
+</td>
+</tr>
+</tbody></table>
+</body></html>

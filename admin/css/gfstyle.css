@@ -1,0 +1,245 @@
+@charset "utf-8";
+/*upload*/
+.gallery{ width:100%; float:left; margin-top:30px;}
+.gallery ul{ margin:0; padding:0; list-style-type:none;}
+.gallery ul li{ 
+    padding:7px; 
+    border:2px solid #ccc; 
+    float:left; 
+    margin:10px 7px; 
+    background:none; 
+    width:auto; 
+    height:auto;
+}
+
+.gallery li {margin-right: 15px !important;position: relative;}
+.gallery .fa_user {
+    color: red;
+    top: 5px;
+    right: 0px;
+    position: absolute;
+    font-size: 18px;
+}
+.show_thumb {
+    width: 75px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+}
+
+.none{ display:none;}
+
+.upload_div{ margin-bottom:50px;}
+.uploading{ margin-top:15px;}
+.txtUpload {
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: blue;
+    display: block;
+    text-align: center;
+}
+#contact_mt input {
+    display: block;margin: 0 auto;
+}
+#contact_mt #upload {
+    margin-top: 15px;
+    min-width: 100px;
+    color: #fff;
+    background-color: #286090;
+    border-color: #204d74;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+}
+/*end upload*/
+
+/*Custome css*/
+.cgray{color:#999;}
+.cgreen{color:#0A0;}
+.cred{color:#f00;}
+.cviolet{color:violet;}
+.red{color: red;}
+.mes-error {
+    font-weight: 400;
+    padding-left: 20px;
+    color: red;
+    font-size: 12px;
+}
+.content-header .btn{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.content-header{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.toolbar{
+    padding: 30px 0px;
+}
+.toolbars ul.list-inline{
+    float: right;
+}
+.toolbars ul.list-inline>li{
+    display: inline-block;
+}
+p.paging {
+    line-height: 35px;
+    padding-right: 20px;
+}
+#frm_list input, #frm_list select, #frm_list button, #menus button, #menus .btn, 
+.select2-container--default .select2-selection--single{
+    padding: 6px 8px;
+    height: 36px;
+    font-size: 15px;
+    margin-right: 3px;
+    border-radius: 0;
+    font-weight: 500;
+}
+.order{
+    width: 60px;
+    text-align: center;
+}
+.th-display, .th-edit, .th-delete{
+    width: 50px;
+}
+.th-status{
+    width: 120px;
+}
+#notify {
+    position: fixed;
+    top: 60px;
+    right: 0px;
+    z-index: 1;
+}
+/*.wrap-toast {
+position: absolute; 
+top: 0; 
+right: 0;
+}
+*/
+.toast{
+    display: none;
+}
+.nav-tabs{
+    margin-bottom: 5px;
+}
+.tab-content.card {
+    padding-top: 10px;
+}
+
+/* List images */
+.info-item{
+    padding: 5px;
+    float: left;
+    margin-right: 10px;
+    position: relative;
+    margin-bottom: 8px;
+}
+.info-item .name{
+    padding: 8px;
+    text-align: center;
+}
+.info-item img{
+    width: 160px;
+    height: 90px;
+}
+.info-item .wrap-item-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /*display: none;*/
+}
+.info-item:hover .wrap-item-info {
+    display: block;
+}
+.info-item .del-item{
+    position: absolute;
+    left: 60px;
+    top: 30%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin: auto;
+    background: url(../images/cancel_f2.png);
+    background-size: 20px auto;
+}
+.info-item .edit-item{
+    position: absolute;
+    left: 90px;
+    top: 30%;
+    margin: auto;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    background: url(../images/icon-32-edit.png);
+    background-size: 20px auto;
+}
+.info-item .image_order {
+    width: 30px;
+    position: absolute;
+    top: -15px;
+    right: -5px;
+    text-align: center;
+}
+.info-item span{
+    height: 60px;
+    overflow: hidden;
+    display: inline-block;
+    float: right;
+    width: 118px;
+    margin-right: 10px;
+}
+img.thumb-default {
+    background-color: #eee;
+    width: 100px;
+    height: 100px;
+    padding: 15px;
+    cursor: pointer;
+}
+.df_thumb {
+    width: 60px;
+}
+.toolbar .btn {
+    border-radius: 0px;
+    padding: 10px 50px;
+}
+label.radio-inline {
+    font-weight: 500 !important;
+    margin-right: 10px;
+}
+.ajax-price{
+    width: 120px;
+}
+#myModal .modal-header{
+    display: block;
+}
+
+#profile .wrap-avatar{
+    margin: 20px auto;
+}
+#profile .avatar{
+    height: 200px;
+    width: 200px;
+    margin-bottom: 15px;
+}
+.table-bordered td .info span {
+    border: 1px solid #66666621;
+    border-radius: 10px;
+    padding: 0 6px;
+    font-size: 14px;
+    background-color: #cccccc38;
+}
+/*Custom select2*/
+.select2-container .select2-selection--single{
+    height: 38px !important;
+}
+.select2-container{
+    font-weight: normal;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice{
+    color: #333;
+    font-size: 14px;
+}

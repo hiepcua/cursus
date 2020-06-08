@@ -1,4 +1,3 @@
-<!-- Header Start -->
 <header class="header clearfix">
 	<button type="button" id="toggleMenu" class="toggle_menu">
 		<i class='uil uil-bars'></i>
@@ -24,7 +23,7 @@
 			<li>
 				<a href="create_new_course.html" class="upload_btn">Create New Course</a>
 			</li>
-			<li>
+			<!-- <li>
 				<a href="index.html" class="option_links"><i class='uil uil-home-alt'></i><span class="noti_count">9+</span></a>
 			</li>
 			<li class="ui dropdown">
@@ -97,7 +96,7 @@
 					</a>
 					<a class="vbm_btn" href="instructor_notifications.html">View All <i class='uil uil-arrow-right'></i></a>
 				</div>
-			</li>
+			</li> -->
 			<li class="ui dropdown">
 				<a href="#" class="opts_account">
 					<img src="images/hd_dp.jpg" alt="">
@@ -118,23 +117,22 @@
 						</div>
 						<a href="my_instructor_profile_view.html" class="dp_link_12">View Instructor Profile</a>						
 					</div>
-					<div class="night_mode_switch__btn">
+					<!-- <div class="night_mode_switch__btn">
 						<a href="#" id="night-mode" class="btn-night-mode">
 							<i class="uil uil-moon"></i> Night mode
 							<span class="btn-night-mode-switch">
 								<span class="uk-switch-button"></span>
 							</span>
 						</a>
-					</div>
-					<a href="instructor_dashboard.html" class="item channel_item">Cursus dashboard</a>						
-					<a href="membership.html" class="item channel_item">Paid Memberships</a>
+					</div> -->
+					<a href="instructor_dashboard.php" class="item channel_item">Cursus dashboard</a>
+					<!-- <a href="membership.html" class="item channel_item">Paid Memberships</a> -->
 					<a href="setting.html" class="item channel_item">Setting</a>
 					<a href="help.html" class="item channel_item">Help</a>
-					<a href="feedback.html" class="item channel_item">Send Feedback</a>
+					<a href="feedback.php" class="item channel_item">Send Feedback</a>
 					<a href="sign_in.html" class="item channel_item">Sign Out</a>
 				</div>
 			</li>
 		</ul>
 	</div>
 </header>
-	<!-- Header End -->

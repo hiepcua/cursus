@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, shrink-to-fit=9">
 		<meta name="description" content="Gambolthemes">
 		<meta name="author" content="Gambolthemes">		
-		<title>Cursus - Index</title>
+		<title>Ecohub - Index</title>
 		
 		<!-- Favicon Icon -->
 		<link rel="icon" type="image/png" href="images/fav.png">
@@ -774,7 +774,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="section3125 mt-50">
+						<!-- <div class="section3125 mt-50">
 							<h4 class="item_title">Popular Instructors</h4>
 							<a href="all_instructor.html" class="see150">See all</a>
 							<div class="la5lo1">
@@ -989,7 +989,7 @@
 									</div>
 								</div>
 							</div>
-						</div>	
+						</div> -->	
 					</div>
 					<div class="col-xl-3 col-lg-4">
 						<div class="right_side">
@@ -1031,11 +1031,11 @@
 									</div>
 								</div>
 							</div>
-							<div class="get1452">
+							<!-- <div class="get1452">
 								<h4>Get personalized recommendations</h4>
 								<p>Answer a few questions for your top picks</p>
 								<button class="Get_btn" onclick="window.location.href = '#';">Get Started</button>
-							</div>
+							</div> -->
 							<div class="fcrse_3">
 								<div class="cater_ttle">
 									<h4>Top Categories</h4>
@@ -1051,11 +1051,11 @@
 									<li><a href="#" class="ct_item"><i class='uil uil-music'></i>Music</a></li>
 								</ul>
 							</div>
-							<div class="strttech120">
+							<!-- <div class="strttech120">
 								<h4>Become an Instructor</h4>
 								<p>Top instructors from around the world teach millions of students on Cursus. We provide the tools and skills to teach what you love.</p>
 								<button class="Get_btn" onclick="window.location.href = '#';">Start Teaching</button>
-							</div>
+							</div> -->
 						</div>
 					</div>
 					<div class="col-xl-12 col-lg-12">
