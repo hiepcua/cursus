@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2020-06-09 01:54:14
+Date: 2020-06-09 18:01:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -28,7 +28,7 @@ CREATE TABLE `tbl_booking` (
   `price1` int(11) DEFAULT NULL,
   `price2` int(11) NOT NULL,
   `starting_gate` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `start_date` int(11) DEFAULT '0',
+  `start_date` int(11) DEFAULT 0,
   `days` int(11) DEFAULT NULL,
   `vehicle` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `number_of_holes` int(11) DEFAULT NULL,
@@ -65,13 +65,13 @@ INSERT INTO `tbl_booking` VALUES ('7', '4', '39', 'ĐÀ NẴNG-SƠN TRÀ-HỘI A
 DROP TABLE IF EXISTS `tbl_categories`;
 CREATE TABLE `tbl_categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `par_id` int(11) NOT NULL DEFAULT '0',
+  `par_id` int(11) NOT NULL DEFAULT 0,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `thumb` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `intro` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `order` int(11) DEFAULT '0',
-  `isactive` int(11) NOT NULL DEFAULT '1',
+  `order` int(11) DEFAULT 0,
+  `isactive` int(11) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   UNIQUE KEY `code` (`code`)
 ) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -104,7 +104,7 @@ CREATE TABLE `tbl_configsite` (
   `tem_id` int(11) DEFAULT NULL,
   `company_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `intro` longtext COLLATE utf8_unicode_ci,
+  `intro` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
   `address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `phone` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `tel` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
@@ -113,10 +113,10 @@ CREATE TABLE `tbl_configsite` (
   `work_time` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `website` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `banner` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `logo` text COLLATE utf8_unicode_ci,
-  `meta_keyword` longtext COLLATE utf8_unicode_ci,
-  `meta_descript` longtext COLLATE utf8_unicode_ci,
-  `lang_id` int(11) NOT NULL DEFAULT '0',
+  `logo` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `meta_keyword` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
+  `meta_descript` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
+  `lang_id` int(11) NOT NULL DEFAULT 0,
   `contact` text COLLATE utf8_unicode_ci NOT NULL,
   `footer` text COLLATE utf8_unicode_ci NOT NULL,
   `nick_yahoo` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -146,9 +146,9 @@ CREATE TABLE `tbl_contact` (
   `address` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   `phone` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `tittle` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `contents` text COLLATE utf8_unicode_ci,
+  `contents` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `cdate` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `isactive` int(11) DEFAULT '0',
+  `isactive` int(11) DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -166,10 +166,10 @@ CREATE TABLE `tbl_contents` (
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `code` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `thumb` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `images` text COLLATE utf8_unicode_ci,
-  `sapo` text COLLATE utf8_unicode_ci,
-  `intro` text COLLATE utf8_unicode_ci,
-  `fulltext` longtext COLLATE utf8_unicode_ci,
+  `images` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sapo` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `intro` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `fulltext` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
   `type_of_land_id` int(11) DEFAULT NULL,
   `area` float DEFAULT NULL,
   `price` float DEFAULT NULL,
@@ -182,11 +182,11 @@ CREATE TABLE `tbl_contents` (
   `author` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `cdate` int(11) DEFAULT NULL,
   `mdate` int(11) DEFAULT NULL,
-  `visited` int(11) NOT NULL DEFAULT '0',
-  `order` int(11) NOT NULL DEFAULT '0',
-  `ispay` tinyint(4) DEFAULT '0',
-  `ishot` tinyint(4) NOT NULL DEFAULT '0',
-  `isactive` tinyint(4) NOT NULL DEFAULT '1',
+  `visited` int(11) NOT NULL DEFAULT 0,
+  `order` int(11) NOT NULL DEFAULT 0,
+  `ispay` tinyint(4) DEFAULT 0,
+  `ishot` tinyint(4) NOT NULL DEFAULT 0,
+  `isactive` tinyint(4) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=107 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -258,20 +258,20 @@ CREATE TABLE `tbl_feedback` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `avatar` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
   `comment` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `career` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `order` int(4) DEFAULT NULL,
-  `isactive` tinyint(2) DEFAULT '1',
+  `isactive` tinyint(2) DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tbl_feedback
 -- ----------------------------
-INSERT INTO `tbl_feedback` VALUES ('1', 'Layla', 'http://localhost/cms/images/hinh-anh/avata-1.jpg', 'Tôi thật sự bị ấn tượng bởi sự nhiệt tình và chu đáo dành cho khách hàng ở đây. Không chỉ chuyên sửa Lexus uy tín, mà chất lượng phục vụ cũng rất tốt. Dịch vụ ở đây hoàn toàn thuyết phục', 'Doanh nhân', '1', '1');
-INSERT INTO `tbl_feedback` VALUES ('2', 'DAVID MATIN', 'http://localhost/cms/images/hinh-anh/avata-1.jpg', 'Tôi hài lòng về dịch vụ bảo hành ở đây, các kỹ sư sau khi sửa ô tô Lexus còn gọi điện chăm sóc và hỏi thăm tình trạng ô tô sau khi sửa chữa. Dịch vụ ở đây hoàn toàn thuyết phục một khách hàng khó tính như tôi', 'Student', '0', '1');
-INSERT INTO `tbl_feedback` VALUES ('3', 'Võ Văn Vẻ', 'http://localhost/cms/images/hinh-anh/avata-1.jpg', 'Tôi hài lòng về dịch vụ bảo hành ở đây, các kỹ sư sau khi sửa ô tô Lexus còn gọi điện chăm sóc và hỏi thăm tình trạng ô tô sau khi sửa chữa. Dịch vụ ở đây hoàn toàn thuyết phục một khách hàng khó tính như tôi', 'Nhân viên văn phòng', null, '1');
-INSERT INTO `tbl_feedback` VALUES ('4', 'Hoàng Rapper', 'http://localhost/cms/images/hinh-anh/avata-1.jpg', 'Tôi hài lòng về dịch vụ bảo hành ở đây, các kỹ sư sau khi sửa ô tô Lexus còn gọi điện chăm sóc và hỏi thăm tình trạng ô tô sau khi sửa chữa. Dịch vụ ở đây hoàn toàn thuyết phục một khách hàng khó tính như tôi', 'Nhân viên văn phòng', null, '1');
+INSERT INTO `tbl_feedback` VALUES ('1', 'tranviethiepdz@gmail.com', 'http://localhost/cms/images/hinh-anh/avata-1.jpg', null, 'Tôi thật sự bị ấn tượng bởi sự nhiệt tình và chu đáo dành cho khách hàng ở đây. Không chỉ chuyên sửa Lexus uy tín, mà chất lượng phục vụ cũng rất tốt. Dịch vụ ở đây hoàn toàn thuyết phục', 'Doanh nhân', '1', '1');
+INSERT INTO `tbl_feedback` VALUES ('2', 'tradaviahe2017@gmail.com', 'http://localhost/cms/images/hinh-anh/avata-1.jpg', null, 'Tôi hài lòng về dịch vụ bảo hành ở đây, các kỹ sư sau khi sửa ô tô Lexus còn gọi điện chăm sóc và hỏi thăm tình trạng ô tô sau khi sửa chữa. Dịch vụ ở đây hoàn toàn thuyết phục một khách hàng khó tính như tôi', 'Student', '0', '1');
+INSERT INTO `tbl_feedback` VALUES ('4', 'abc@gmail.com', 'http://localhost/cms/images/hinh-anh/avata-1.jpg', null, 'Tôi hài lòng về dịch vụ bảo hành ở đây, các kỹ sư sau khi sửa ô tô Lexus còn gọi điện chăm sóc và hỏi thăm tình trạng ô tô sau khi sửa chữa. Dịch vụ ở đây hoàn toàn thuyết phục một khách hàng khó tính như tôi', 'Nhân viên văn phòng', null, '1');
 
 -- ----------------------------
 -- Table structure for tbl_gmember
@@ -279,11 +279,11 @@ INSERT INTO `tbl_feedback` VALUES ('4', 'Hoàng Rapper', 'http://localhost/cms/i
 DROP TABLE IF EXISTS `tbl_gmember`;
 CREATE TABLE `tbl_gmember` (
   `gmem_id` int(11) NOT NULL AUTO_INCREMENT,
-  `par_id` int(11) DEFAULT '0',
+  `par_id` int(11) DEFAULT 0,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `intro` text COLLATE utf8_unicode_ci,
-  `isadmin` int(11) DEFAULT '1',
-  `isactive` int(11) DEFAULT '1',
+  `intro` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `isadmin` int(11) DEFAULT 1,
+  `isactive` int(11) DEFAULT 1,
   PRIMARY KEY (`gmem_id`),
   KEY `idx_active` (`isactive`)
 ) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC;
@@ -299,6 +299,29 @@ INSERT INTO `tbl_gmember` VALUES ('11', '2', 'Order Manager', '', '1', '1');
 INSERT INTO `tbl_gmember` VALUES ('13', '1', 'Public', 'ai cũng có quyền truy cập', '1', '1');
 
 -- ----------------------------
+-- Table structure for tbl_guser
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_guser`;
+CREATE TABLE `tbl_guser` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `par_id` int(11) DEFAULT 0,
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `intro` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `isadmin` int(11) DEFAULT 1,
+  `path` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `isactive` int(11) DEFAULT 1,
+  PRIMARY KEY (`id`),
+  KEY `idx_active` (`isactive`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC;
+
+-- ----------------------------
+-- Records of tbl_guser
+-- ----------------------------
+INSERT INTO `tbl_guser` VALUES ('1', '0', 'Origin', '', '1', '1', '1');
+INSERT INTO `tbl_guser` VALUES ('2', '1', 'Team công nghệ', '', '1', '1_2', '1');
+INSERT INTO `tbl_guser` VALUES ('3', '1', 'Viện Toán Cao Cấp', '', '1', '1_3', '1');
+
+-- ----------------------------
 -- Table structure for tbl_mail_config
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_mail_config`;
@@ -308,7 +331,7 @@ CREATE TABLE `tbl_mail_config` (
   `hostname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `user` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `pass` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `port` int(11) NOT NULL DEFAULT '110',
+  `port` int(11) NOT NULL DEFAULT 110,
   `name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -337,7 +360,7 @@ CREATE TABLE `tbl_member` (
   `joindate` datetime NOT NULL,
   `lastlogin` datetime NOT NULL,
   `gmem_id` int(11) NOT NULL,
-  `isactive` int(11) NOT NULL DEFAULT '1',
+  `isactive` int(11) NOT NULL DEFAULT 1,
   PRIMARY KEY (`mem_id`),
   UNIQUE KEY `username` (`username`),
   KEY `idx_active` (`isactive`)
@@ -357,7 +380,7 @@ CREATE TABLE `tbl_member_login` (
   `username` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `session` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `cdate` int(11) DEFAULT NULL,
-  `isactive` tinyint(4) DEFAULT '1',
+  `isactive` tinyint(4) DEFAULT 1,
   PRIMARY KEY (`id`),
   KEY `idx` (`isactive`,`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -375,7 +398,7 @@ CREATE TABLE `tbl_menus` (
   `name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `code` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `desc` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `isactive` int(11) NOT NULL DEFAULT '1',
+  `isactive` int(11) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -391,21 +414,21 @@ INSERT INTO `tbl_menus` VALUES ('3', 'Menu Footer', 'Menu-footer', '', '1');
 DROP TABLE IF EXISTS `tbl_mnuitems`;
 CREATE TABLE `tbl_mnuitems` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `par_id` int(11) NOT NULL DEFAULT '0',
-  `menu_id` int(11) NOT NULL DEFAULT '0',
+  `par_id` int(11) NOT NULL DEFAULT 0,
+  `menu_id` int(11) NOT NULL DEFAULT 0,
   `name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `code` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `intro` text COLLATE utf8_unicode_ci,
+  `intro` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `viewtype` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `type_of_land_id` int(11) DEFAULT NULL,
   `place_id` int(11) DEFAULT NULL,
-  `category_id` int(11) NOT NULL DEFAULT '0',
-  `content_id` int(11) NOT NULL DEFAULT '0',
+  `category_id` int(11) NOT NULL DEFAULT 0,
+  `content_id` int(11) NOT NULL DEFAULT 0,
   `link` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `icon` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `class` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `order` int(11) NOT NULL DEFAULT '0',
-  `isactive` int(11) NOT NULL DEFAULT '1',
+  `order` int(11) NOT NULL DEFAULT 0,
+  `isactive` int(11) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=103 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -539,8 +562,8 @@ CREATE TABLE `tbl_modules` (
   `type` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `intro` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `content` text COLLATE utf8_unicode_ci,
-  `viewtitle` int(11) NOT NULL DEFAULT '0',
+  `content` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `viewtitle` int(11) NOT NULL DEFAULT 0,
   `menu_id` int(11) DEFAULT NULL,
   `menu_ids` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `category_id` int(50) DEFAULT NULL,
@@ -549,8 +572,8 @@ CREATE TABLE `tbl_modules` (
   `theme` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `position` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `class` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `order` int(11) NOT NULL DEFAULT '0',
-  `isactive` int(11) NOT NULL DEFAULT '0',
+  `order` int(11) NOT NULL DEFAULT 0,
+  `isactive` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=87 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -603,16 +626,16 @@ INSERT INTO `tbl_partner` VALUES ('5', 'Đối t&aacute;c 5', 'http://localhost/
 DROP TABLE IF EXISTS `tbl_place`;
 CREATE TABLE `tbl_place` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `par_id` int(11) DEFAULT '0',
+  `par_id` int(11) DEFAULT 0,
   `country_id` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `city_id` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `district_id` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `images` text COLLATE utf8_unicode_ci,
+  `images` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `intro` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `order` int(11) DEFAULT '0',
-  `isactive` int(11) NOT NULL DEFAULT '1',
+  `order` int(11) DEFAULT 0,
+  `isactive` int(11) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   UNIQUE KEY `code` (`code`)
 ) ENGINE=MyISAM AUTO_INCREMENT=90 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -819,9 +842,9 @@ CREATE TABLE `tbl_seo` (
   `meta_title` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `meta_key` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `meta_desc` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `ishot` tinyint(4) DEFAULT '0',
-  `order` tinyint(4) DEFAULT '0',
-  `isactive` tinyint(4) DEFAULT '1',
+  `ishot` tinyint(4) DEFAULT 0,
+  `order` tinyint(4) DEFAULT 0,
+  `isactive` tinyint(4) DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=133 DEFAULT CHARSET=latin1;
 
@@ -952,7 +975,7 @@ CREATE TABLE `tbl_slider` (
   `thumb` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `link` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
   `order` int(11) DEFAULT NULL,
-  `isactive` int(11) NOT NULL DEFAULT '1',
+  `isactive` int(11) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -972,8 +995,8 @@ CREATE TABLE `tbl_tags` (
   `name` varchar(50) DEFAULT NULL,
   `code` varchar(50) DEFAULT NULL,
   `meta_title` varchar(255) DEFAULT NULL,
-  `meta_desc` text,
-  `pids` text,
+  `meta_desc` text DEFAULT NULL,
+  `pids` text DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -987,59 +1010,31 @@ CREATE TABLE `tbl_tags` (
 DROP TABLE IF EXISTS `tbl_user`;
 CREATE TABLE `tbl_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `firstname` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `lastname` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `birthday` int(11) NOT NULL,
-  `gender` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `address` text COLLATE utf8_unicode_ci NOT NULL,
-  `phone` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `mobile` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `avatar` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `identify` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `organ` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `joindate` int(11) NOT NULL,
-  `lastlogin` int(11) NOT NULL,
-  `gid` int(11) NOT NULL,
-  `isroot` tinyint(4) DEFAULT NULL,
-  `isactive` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `username` varchar(50) NOT NULL,
+  `password` varchar(300) DEFAULT NULL,
+  `fullname` varchar(50) DEFAULT NULL,
+  `phone` varchar(11) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `avatar` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mtype` varchar(50) DEFAULT NULL,
+  `gsecret` varchar(50) DEFAULT NULL,
+  `isfa2` tinyint(4) DEFAULT 0,
+  `cdate` int(11) DEFAULT NULL,
+  `isadmin` tinyint(4) DEFAULT 0,
+  `cuser` varchar(50) DEFAULT NULL,
+  `is_trash` tinyint(4) DEFAULT 0,
+  `isactive` tinyint(4) DEFAULT 1,
+  `gmember` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tbl_user
 -- ----------------------------
-INSERT INTO `tbl_user` VALUES ('12', 'igf', 'd93a5def7511da3d0f2d171d9c344e91', 'IGF', 'JSC', '0', '', '', '', '', '', null, null, null, '0', '2147483647', '1', null, '1');
-INSERT INTO `tbl_user` VALUES ('16', 'admin', 'd93a5def7511da3d0f2d171d9c344e91', 'Admin', 'Admin', '778784400', '0', '', '0969549903', '', 'tranviethiepdz@gmail.com', null, '1111111111', '', '2147483647', '2020', '1', null, '1');
-INSERT INTO `tbl_user` VALUES ('20', 'danghien', '8fce8935f4d4dc9cfaf4ca6f705b2329', 'Hiển', 'Nguyễn Đăng', '0', '0', '', '1234567890', '', 'a@gmail.com', null, null, null, '2147483647', '2147483647', '1', null, '1');
-
--- ----------------------------
--- Table structure for tbl_user_group
--- ----------------------------
-DROP TABLE IF EXISTS `tbl_user_group`;
-CREATE TABLE `tbl_user_group` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `par_id` int(11) DEFAULT '0',
-  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `intro` text COLLATE utf8_unicode_ci,
-  `permission` int(11) NOT NULL DEFAULT '0',
-  `isadmin` int(11) NOT NULL DEFAULT '0',
-  `isroot` tinyint(4) DEFAULT NULL,
-  `isboss` tinyint(4) DEFAULT '1',
-  `isactive` int(11) DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- ----------------------------
--- Records of tbl_user_group
--- ----------------------------
-INSERT INTO `tbl_user_group` VALUES ('1', '0', 'Super Admin', '', '8388607', '1', null, '1', '1');
-INSERT INTO `tbl_user_group` VALUES ('2', '1', 'Admin', '', '6291448', '0', null, '1', '1');
-INSERT INTO `tbl_user_group` VALUES ('10', '2', 'Content', '', '992', '0', null, '1', '1');
-INSERT INTO `tbl_user_group` VALUES ('13', '2', 'Dangky', '', '49152', '0', null, '1', '1');
+INSERT INTO `tbl_user` VALUES ('1', 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Trung Vu', '', 'vuquoctrung@gmail.com', null, null, null, '0', '1587472239', '1', null, '0', '1', '2');
+INSERT INTO `tbl_user` VALUES ('2', 'nguyenchithanh', '8fe7cd18285b959df703708ffef8ba7daac1b0236257bc0748967e755f4a52c2|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Nguyễn Chí Thành', '', 'thanhems@gmail.com', null, null, null, '0', '1587472239', '0', null, '0', '1', '2');
+INSERT INTO `tbl_user` VALUES ('3', 'nxtuyen.pro@gmail.com', 'a25342213446980b5f750b37daed053ce347ec766265b78aa81d90c8217e5e39|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Nguyễn Xuân Tuyền', '0936831277', 'nxtuyen.pro@gmail.com', null, '', null, '0', '1586660652', '1', null, '0', '1', '2');
+INSERT INTO `tbl_user` VALUES ('4', 'vuquoctrung@gmail.com', 'ced7a21182b5d8340544f804ebf5b63ac29e23af40a9e6ef2538db556fee5b4b|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Trung Vũ', '', 'vuquoctrung@gmail.com', null, null, null, '0', '1586660670', '1', null, '0', '1', '2');
 
 -- ----------------------------
 -- Table structure for tbl_user_login
@@ -1050,14 +1045,16 @@ CREATE TABLE `tbl_user_login` (
   `username` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `session` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `cdate` int(11) DEFAULT NULL,
-  `isactive` tinyint(4) DEFAULT '1',
+  `isactive` tinyint(4) DEFAULT 1,
   PRIMARY KEY (`id`),
   KEY `idx` (`isactive`,`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of tbl_user_login
 -- ----------------------------
+INSERT INTO `tbl_user_login` VALUES ('1', 'admin', '1591690731', '1591690731', '1');
+INSERT INTO `tbl_user_login` VALUES ('2', 'nxtuyen.pro@gmail.com', '1591700044', '1591700044', '1');
 
 -- ----------------------------
 -- Table structure for tbl_video
@@ -1071,13 +1068,13 @@ CREATE TABLE `tbl_video` (
   `link` varchar(255) DEFAULT NULL,
   `thumb` varchar(255) DEFAULT NULL,
   `intro` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `content` text CHARACTER SET utf8,
-  `ishot` tinyint(4) DEFAULT '0',
-  `order` int(11) DEFAULT '0',
+  `content` text CHARACTER SET utf8 DEFAULT NULL,
+  `ishot` tinyint(4) DEFAULT 0,
+  `order` int(11) DEFAULT 0,
   `cdate` datetime DEFAULT NULL,
   `mdate` datetime DEFAULT NULL,
-  `visited` int(11) DEFAULT '0',
-  `isactive` tinyint(4) DEFAULT '1',
+  `visited` int(11) DEFAULT 0,
+  `isactive` tinyint(4) DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
@@ -1097,122 +1094,10 @@ CREATE TABLE `tbl_visit` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ip` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `cdate` date DEFAULT NULL,
-  `isonline` int(11) DEFAULT '1',
+  `isonline` int(11) DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of tbl_visit
 -- ----------------------------
-
--- ----------------------------
--- Function structure for Categories_GetFamilyTree
--- ----------------------------
-DROP FUNCTION IF EXISTS `Categories_GetFamilyTree`;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `Categories_GetFamilyTree`(GivenID INT) RETURNS varchar(1024) CHARSET latin1
-    DETERMINISTIC
-BEGIN
-
-    DECLARE rv,q,queue,queue_children VARCHAR(1024);
-    DECLARE queue_length,front_id,pos INT;
-
-    SET rv = '';
-    SET queue = GivenID;
-    SET queue_length = 1;
-
-    WHILE queue_length > 0 DO
-        SET front_id = FORMAT(queue,0);
-        IF queue_length = 1 THEN
-            SET queue = '';
-        ELSE
-            SET pos = LOCATE(',',queue) + 1;
-            SET q = SUBSTR(queue,pos);
-            SET queue = q;
-        END IF;
-        SET queue_length = queue_length - 1;
-
-        SELECT IFNULL(qc,'') INTO queue_children
-        FROM (SELECT GROUP_CONCAT(id) qc
-        FROM tbl_categories WHERE par_id = front_id) A;
-
-        IF LENGTH(queue_children) = 0 THEN
-            IF LENGTH(queue) = 0 THEN
-                SET queue_length = 0;
-            END IF;
-        ELSE
-            IF LENGTH(rv) = 0 THEN
-                SET rv = queue_children;
-            ELSE
-                SET rv = CONCAT(rv,',',queue_children);
-            END IF;
-            IF LENGTH(queue) = 0 THEN
-                SET queue = queue_children;
-            ELSE
-                SET queue = CONCAT(queue,',',queue_children);
-            END IF;
-            SET queue_length = LENGTH(queue) - LENGTH(REPLACE(queue,',','')) + 1;
-        END IF;
-    END WHILE;
-
-    RETURN rv;
-
-END
-;;
-DELIMITER ;
-
--- ----------------------------
--- Function structure for Place_GetFamilyTree
--- ----------------------------
-DROP FUNCTION IF EXISTS `Place_GetFamilyTree`;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `Place_GetFamilyTree`(GivenID INT) RETURNS varchar(1024) CHARSET latin1
-    DETERMINISTIC
-BEGIN
-
-    DECLARE rv,q,queue,queue_children VARCHAR(1024);
-    DECLARE queue_length,front_id,pos INT;
-
-    SET rv = '';
-    SET queue = GivenID;
-    SET queue_length = 1;
-
-    WHILE queue_length > 0 DO
-        SET front_id = FORMAT(queue,0);
-        IF queue_length = 1 THEN
-            SET queue = '';
-        ELSE
-            SET pos = LOCATE(',',queue) + 1;
-            SET q = SUBSTR(queue,pos);
-            SET queue = q;
-        END IF;
-        SET queue_length = queue_length - 1;
-
-        SELECT IFNULL(qc,'') INTO queue_children
-        FROM (SELECT GROUP_CONCAT(id) qc
-        FROM tbl_place WHERE par_id = front_id) A;
-
-        IF LENGTH(queue_children) = 0 THEN
-            IF LENGTH(queue) = 0 THEN
-                SET queue_length = 0;
-            END IF;
-        ELSE
-            IF LENGTH(rv) = 0 THEN
-                SET rv = queue_children;
-            ELSE
-                SET rv = CONCAT(rv,',',queue_children);
-            END IF;
-            IF LENGTH(queue) = 0 THEN
-                SET queue = queue_children;
-            ELSE
-                SET queue = CONCAT(queue,',',queue_children);
-            END IF;
-            SET queue_length = LENGTH(queue) - LENGTH(REPLACE(queue,',','')) + 1;
-        END IF;
-    END WHILE;
-
-    RETURN rv;
-
-END
-;;
-DELIMITER ;

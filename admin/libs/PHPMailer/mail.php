@@ -17,14 +17,14 @@ function sendMail($title, $content, $sendTo) {
 		$mail->isSMTP();                                      // Set mailer to use SMTP
 		$mail->Host = 'smtp.gmail.com';  					  // Specify main and backup SMTP servers
 		$mail->SMTPAuth = true;                               // Enable SMTP authentication
-		$mail->Username = 'ecohub.5gmedia@gmail.com';             // SMTP username
-		$mail->Password = 'ecohub@123';                   // SMTP password
+		$mail->Username = 'Pitnex2019@gmail.com';             // SMTP username
+		$mail->Password = 'ABC12345678900';                   // SMTP password
 		$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
 		$mail->Port = 587;                                    // TCP port to connect to
 	 
 		//Recipients
-		$mail->setFrom('ecohub.5gmedia@gmail.com', 'EcoHub system');	
-		$mail->addReplyTo('ecohub.5gmedia@gmail.com', 'EcoHub system');	
+		$mail->setFrom('pitnex2019@gmail.com', 'Pitnex system');	
+		$mail->addReplyTo('noreply@pitnex.com', 'Pitnex system');	
 		$mail->addAddress($sendTo);
 		//Content
 		$mail->isHTML(true);                                  // Set email format to HTML

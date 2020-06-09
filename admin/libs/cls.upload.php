@@ -67,7 +67,7 @@ class CLS_UPLOAD{
 	function renameExit($filename){
 		if(file_exists($this->_path.$this->file_name)){
 			$temp = explode(".",$filename);
-			$newfilename = $temp[0].'_'.$this->rand_string(3).'.'.$temp[1];
+			$newfilename = un_unicode($temp[0]).'_'.$this->rand_string(3).'.'.$temp[1];
 			return $newfilename;
 		}
 		else
@@ -96,7 +96,7 @@ class CLS_UPLOAD{
 	}
 
 	function UploadFile($filename,$patch=''){
-		$this->file_name=$_FILES[$filename]["name"];
+		$this->file_name = $_FILES[$filename]["name"];
 		$this->file_type=$_FILES[$filename]["type"];
 		$this->file_size=$_FILES[$filename]["size"];
 		$this->file_error=$_FILES[$filename]["error"];
@@ -107,10 +107,9 @@ class CLS_UPLOAD{
 		$this->checkError();
 		$this->checkType();
 		$this->checkSize();
-		$this->checkExistFile();
-		$newname = $this->ReName($_FILES[$filename]["name"]);
-		$this->SaveFile($newname);
-		$file=$this->_path.$newname;
+		$this->file_name=$this->renameExit($this->file_name);
+		$this->SaveFile($this->file_name);
+		$file=$this->file_name;
 		return $file;
 	}
 	function UploadFileRename($filename,$patch=''){

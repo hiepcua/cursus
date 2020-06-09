@@ -1,70 +1,85 @@
-<?php 
+<?php
+function paging($total_rows,$max_rows,$cur_page){
+    $max_pages=ceil($total_rows/$max_rows);
+    $start=$cur_page-5; if($start<1)$start=1;
+    $end=$cur_page+5;   if($end>$max_pages)$end=$max_pages;
+    $paging='
+    <form action="" method="post" name="frmpaging" id="frmpaging">
+    <input type="hidden" name="txtCurnpage" id="txtCurnpage" value="1" />
+    <ul class="pagination">
+    ';
+
+    $paging.='<p align="center" class="paging">';
+    $paging.="<strong>Total:</strong> $total_rows <strong>on</strong> $max_pages <strong>page</strong><br>";
+
+    if($cur_page >1){
+        $paging.='<li class="page-item"><a class="page-link" href="javascript:gotopage('.($cur_page-1).')"> << </a></li>';
+    }
+    if($max_pages>1){
+        for($i=$start;$i<=$end;$i++)
+        {
+            if($i!=$cur_page)
+                $paging.="<li class='page-item'><a class=\"page-link\" href=\"javascript:gotopage($i)\"> $i </a></li>";
+            else
+                $paging.="<li class='page-item active'><a class=\"page-link\" href=\"#\" class=\"cur_page\"> $i </a></li>";
+        }
+    }
+    if($cur_page <$max_pages)
+        $paging.='<li class="page-item"><a class="page-link" href="javascript:gotopage('.($cur_page+1).')"> » </a></li>';
+
+    $paging.='</ul></p></form>';
+    echo $paging;
+}
+function activeMenu($val,$type='com'){
+	$com=isset($_GET['com'])?antiData($_GET['com']):'home';
+	$vie=isset($_GET['viewtype'])?antiData($_GET['viewtype']):'';
+	if($type=='com' && $com==$val) echo 'active';
+	if($type=='viewtype' && $vie==$val) echo 'active';
+}
+function isMobile(){
+	if(preg_match("/(iPad)/i", $_SERVER["HTTP_USER_AGENT"])) return false;
+	elseif(preg_match("/(iPhone|iPod|android|blackberry|Mobile|Lumia)/i", $_SERVER["HTTP_USER_AGENT"])) return true;
+	else return false;
+}
 function un_unicode($str){
 	$marTViet=array(
-	'à','á','ạ','ả','ã','â','ầ','ấ','ậ','ẩ','ẫ','ă',
-	'ằ','ắ','ặ','ẳ','ẵ','è','é','ẹ','ẻ','ẽ','ê','ề'
-	,'ế','ệ','ể','ễ',
+	'à','á','ạ','ả','ã','â','ầ','ấ','ậ','ẩ','ẫ','ă','ằ','ắ','ặ','ẳ','ẵ',
+	'è','é','ẹ','ẻ','ẽ','ê','ề','ế','ệ','ể','ễ',
 	'ì','í','ị','ỉ','ĩ',
-	'ò','ó','ọ','ỏ','õ','ô','ồ','ố','ộ','ổ','ỗ','ơ'
-	,'ờ','ớ','ợ','ở','ỡ',
+	'ò','ó','ọ','ỏ','õ','ô','ồ','ố','ộ','ổ','ỗ','ơ','ờ','ớ','ợ','ở','ỡ',
 	'ù','ú','ụ','ủ','ũ','ư','ừ','ứ','ự','ử','ữ',
 	'ỳ','ý','ỵ','ỷ','ỹ',
 	'đ',
 	'A','B','C','D','E','F','J','G','H','I','K','L','M',
 	'N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
-	'À','Á','Ạ','Ả','Ã','Â','Ầ','Ấ','Ậ','Ẩ','Ẫ','Ă'
-	,'Ằ','Ắ','Ặ','Ẳ','Ẵ',
+	'À','Á','Ạ','Ả','Ã','Â','Ầ','Ấ','Ậ','Ẩ','Ẫ','Ă','Ằ','Ắ','Ặ','Ẳ','Ẵ',
 	'È','É','Ẹ','Ẻ','Ẽ','Ê','Ề','Ế','Ệ','Ể','Ễ',
 	'Ì','Í','Ị','Ỉ','Ĩ',
-	'Ò','Ó','Ọ','Ỏ','Õ','Ô','Ồ','Ố','Ộ','Ổ','Ỗ','Ơ'
-	,'Ờ','Ớ','Ợ','Ở','Ỡ',
+	'Ò','Ó','Ọ','Ỏ','Õ','Ô','Ồ','Ố','Ộ','Ổ','Ỗ','Ơ','Ờ','Ớ','Ợ','Ở','Ỡ',
 	'Ù','Ú','Ụ','Ủ','Ũ','Ư','Ừ','Ứ','Ự','Ử','Ữ',
 	'Ỳ','Ý','Ỵ','Ỷ','Ỹ',
 	'Đ',":",",",".","?","`","~","!","@","#","$","%","^","&","*","(",")","'",'"','&','/','|','   ','  ',' ','---','--');
 
-	$marKoDau=array('a','a','a','a','a','a','a','a','a','a','a',
-	'a','a','a','a','a','a',
+	$marKoDau=array(
+	'a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a',
 	'e','e','e','e','e','e','e','e','e','e','e',
 	'i','i','i','i','i',
-	'o','o','o','o','o','o','o','o','o','o','o','o'
-	,'o','o','o','o','o',
+	'o','o','o','o','o','o','o','o','o','o','o','o','o','o','o','o','o',
 	'u','u','u','u','u','u','u','u','u','u','u',
 	'y','y','y','y','y',
 	'd',
 	'a','b','c','d','e','f','j','g','h','i','k','l','m',
 	'n','o','p','q','r','s','t','u','v','w','x','y','z',
-	'a','a','a','a','a','a','a','a','a','a','a','a'
-	,'a','a','a','a','a',
+	'a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a',
 	'e','e','e','e','e','e','e','e','e','e','e',
 	'i','i','i','i','i',
-	'o','o','o','o','o','o','o','o','o','o','o','o'
-	,'o','o','o','o','o',
+	'o','o','o','o','o','o','o','o','o','o','o','o','o','o','o','o','o',
 	'u','u','u','u','u','u','u','u','u','u','u',
 	'y','y','y','y','y',
 	'd',"","","","","","","","","","","","","","",'','','','','','','',' ',' ','-','-','-');
 
 	$str = str_replace($marTViet, $marKoDau, $str);
 	return $str;
-}
-function time_ago($oldtime){
-	$distance = time() - (int)$oldtime;
-	// Time calculations for days, hours, minutes and seconds
-	$days = floor($distance / (60 * 60 * 24));
-	$hours = floor(($distance % (60 * 60 * 24)) / (60 * 60));
-	$minutes = floor(($distance % (60 * 60)) / (60));
-	$seconds = floor($distance % 60);
-	// Display the result in the element with id="demo"
-	$strTime='';
-	if($days>0){
-		$strTime.=$days." days";
-	}elseif($hours>0){
-		$strTime.=$hours." hours ";
-	}elseif($minutes>0){
-		$strTime.=$minutes." minute ";
-	}else{
-		$strTime.=$seconds." seconds ";
-	}
-	return $strTime;
 }
 function Substring($str,$start,$len){
 	$str=str_replace("  "," ",$str);
@@ -133,64 +148,28 @@ function antiData($data,$type='plaintext',$tag=false){
 	if($tag) $data=htmlentities($data);
 	return $data;
 }
-function getThumb($urlThumb, $class='', $alt=''){
-	$urlThumb = str_replace(' ', '%20', $urlThumb);
-    if($urlThumb !=''){
-        return "<img src=".ROOTHOST.$urlThumb." class='".$class."' alt='".$alt."'>";
+function randomPassword() {
+    $alphabet = "abcdefghijklmnopqrstuwxyz012345678901234567890123456789ABCDEFGHIJKLMNOPQRSTUWXYZ012345678901234567890123456789";
+    $pass = array(); //remember to declare $pass as an array
+    $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+    for ($i = 0; $i < 8; $i++) {
+        $n = rand(0, $alphaLength);
+        $pass[] = $alphabet[$n];
     }
-    else{
-        return "<img src=".IMG_DEFAULT." class='".$class."'>";
-    }
+    return implode($pass); //turn the array into a string
 }
-function getAvatar($urlThumb, $class='', $alt=''){
-	if($urlThumb !=''){
-        return "<img width='75' src=".ROOTHOST.$urlThumb." class='".$class."' alt='".$alt."'>";
-    }else{
-        return "<img src=".AVATAR_DEFAULT." class='".$class."'>";
+function randomNumber() {
+    $alphabet = "012345678901234567890123456789";
+    $pass = array(); //remember to declare $pass as an array
+    $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+    for ($i = 0; $i < 8; $i++) {
+        $n = rand(0, $alphaLength);
+        $pass[] = $alphabet[$n];
     }
-}
-function generateRandomString($length = 10) {
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $randomString;
-}
-function paging($total_rows,$max_rows,$cur_page){
-    $max_pages=ceil($total_rows/$max_rows);
-    $start=$cur_page-5; if($start<1)$start=1;
-    $end=$cur_page+5;   if($end>$max_pages)$end=$max_pages;
-    $paging='
-    <form action="" method="post" name="frmpaging" id="frmpaging">
-    <input type="hidden" name="txtCurnpage" id="txtCurnpage" value="1" />
-    <ul class="pagination">
-    ';
-
-    $paging.='<p align="center" class="paging">';
-    $paging.="<strong>Total:</strong> $total_rows <strong>on</strong> $max_pages <strong>page</strong><br>";
-
-    if($cur_page >1){
-        $paging.='<li class="page-item"><a class="page-link" href="javascript:gotopage('.($cur_page-1).')"> << </a></li>';
-    }
-    if($max_pages>1){
-        for($i=$start;$i<=$end;$i++)
-        {
-            if($i!=$cur_page)
-                $paging.="<li class='page-item'><a class=\"page-link\" href=\"javascript:gotopage($i)\"> $i </a></li>";
-            else
-                $paging.="<li class='page-item active'><a class=\"page-link\" href=\"#\" class=\"cur_page\"> $i </a></li>";
-        }
-    }
-    if($cur_page <$max_pages)
-        $paging.='<li class="page-item"><a class="page-link" href="javascript:gotopage('.($cur_page+1).')"> » </a></li>';
-
-    $paging.='</ul></p></form>';
-    echo $paging;
+    return implode($pass); //turn the array into a string
 }
 //-----------------------CSDL------------------------------
-function SysCountList($table,$where){
+function SysCount($table,$where){
 	$sql="SELECT COUNT(*) as num FROM $table WHERE 1=1 $where";
 	$obj=new CLS_MYSQL;
 	$obj->Query($sql);
@@ -207,7 +186,6 @@ function SysGetList($table,$fields=array(),$where='',$flag=true){
 		}
 		$sql=substr($sql,0,-1)." FROM $table WHERE 1=1 $where ";
 	}
-	// echo $sql;
 	$obj=new CLS_MYSQL;
 	$obj->Query($sql);
 	if($flag){
@@ -238,7 +216,6 @@ function SysEdit($table,$arr,$where){
 		$fields.="`$key`='$val',";
 	}
 	$sql="UPDATE ".$table." SET ".substr($fields,0,-1)." WHERE $where";
-	// echo $sql;
 	$obj=new CLS_MYSQL;
 	return $obj->Exec($sql);
 }
@@ -258,5 +235,27 @@ function SysDel($table,$where){
 	$sql="DELETE FROM ".$table." WHERE $where";
 	$obj=new CLS_MYSQL;
 	$obj->Exec($sql);
+}
+function Curl_Post($url,$jsonBody){
+	$curl = curl_init($url);
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $jsonBody);                                                                  
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);                                                                      
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array(                                                                          
+        'Content-Type: application/json',                                                                                
+        'Content-Length: ' . strlen($jsonBody))                                                                       
+    );                                                                                                                   
+    $resp = curl_exec($curl);//var_dump($resp);
+    curl_close($curl);
+    return json_decode($resp,true);
+}
+function Curl_Get($url){
+	$curl = curl_init($url);
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    $resp = curl_exec($curl);//var_dump($resp);
+    curl_close($curl);
+    return json_decode($resp,true);
 }
 ?>

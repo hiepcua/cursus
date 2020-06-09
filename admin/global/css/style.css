@@ -6,6 +6,19 @@ body {
     background-color: #e9eaed;
 }
 img {vertical-align: middle;}
+option.disabled {
+    background: #dedede;
+}
+#action .card{
+    padding: 10px 15px;
+}
+.widget_thumb80{display: flex;}
+.widget_thumb80 .wrap_thumb80{width: 100px;}
+.widget_thumb80 .thumb80{
+    width: 80px;
+    height: 80px;
+}
+.widget_thumb80 #response_img{padding-top: 20px;}
 .toolbar {
     padding: 30px 0px;
 }
@@ -34,6 +47,9 @@ a.checked {color:#222;}
 .left-50{width:50%;float:left;background:#ccc;border-radius:6px 0px 0px 6px;}
 .right-50{width:50%;float:right;padding:40px;}
 .btn-lg,.input-lg{font-size:15px!important;}
+.primary{background:#3276b1;background-color: rgb(50, 118, 177); border-color: rgb(40, 94, 142);color:#fff;}
+.success{background:#5cb85c;background-color: rgb(92, 184, 92); border-color: rgb(76, 174, 76);color:#fff;}
+.warning{background:#f0ad4e;background-color: rgb(240, 173, 78); border-color: rgb(238, 162, 54);color:#fff;}
 .navbar{background:#fff;}
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus{
     color: #FC3E2C;
