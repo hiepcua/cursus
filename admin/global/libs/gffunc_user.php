@@ -45,8 +45,8 @@ function LogIn($user,$pass){
 	$pass=hash('sha256', $user).'|'.hash('sha256', $pass);
 	$fields=array();
 	$obj=new CLS_MYSQL;
-	if(SysCount("tbl_user"," AND `isactive`=1 AND `username`='$user'")!=1) return $arr;
-	$r=SysGetList("tbl_user",$fields," AND `isactive`=1 AND `username`='$user'");
+	if(SysCount("tbl_users"," AND `isactive`=1 AND `username`='$user'")!=1) return $arr;
+	$r=SysGetList("tbl_users",$fields," AND `isactive`=1 AND `username`='$user'");
 	if($r[0]['password']!=$pass) return $arr;
 	$r[0]['action_time']=time();
 	$r[0]['session']=time();

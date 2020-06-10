@@ -20,8 +20,6 @@ RewriteRule ^vod/deleted/?$ 			index.php?com=vod&viewtype=deleted [QSA]
 RewriteRule ^vod/takedown/?$ 			index.php?com=vod&viewtype=takedown [QSA]
 RewriteRule ^vod/return/?$ 				index.php?com=vod&viewtype=return [QSA]
 
-RewriteRule ^member/?$ 					index.php?com=member [QSA]
-
 RewriteRule ^user/?$ 							index.php?com=user [QSA]
 RewriteRule ^profile/?$ 						index.php?com=user&viewtype=profile
 RewriteRule ^changepass/?$ 						index.php?com=user&viewtype=changepass
@@ -47,6 +45,14 @@ RewriteRule ^feedback/add/?$ 				index.php?com=feedback&viewtype=add [QSA]
 RewriteRule ^feedback/edit/([0-9]+)?$ 		index.php?com=feedback&viewtype=edit&id=$1 [QSA]
 RewriteRule ^feedback/active/([0-9]+)?$ 	index.php?com=feedback&viewtype=active&id=$1 [QSA]
 RewriteRule ^feedback/delete/([0-9]+)?$ 	index.php?com=feedback&viewtype=delete&id=$1 [QSA]
+
+RewriteRule ^member/?$ 						index.php?com=member [QSA]
+RewriteRule ^member/add/?$ 					index.php?com=member&viewtype=add [QSA]
+RewriteRule ^member/edit/([0-9]+)?$ 		index.php?com=member&viewtype=edit&id=$1 [QSA]
+RewriteRule ^member/active/([0-9]+)?$ 		index.php?com=member&viewtype=active&id=$1 [QSA]
+RewriteRule ^member/delete/([0-9]+)?$ 		index.php?com=member&viewtype=delete&id=$1 [QSA]
+RewriteRule ^member/trash/([0-9]+)?$ 		index.php?com=member&viewtype=trash&id=$1 [QSA]
+RewriteRule ^member/trash/?$ 				index.php?com=member&viewtype=list_trash [QSA]
 
 
 RewriteRule ^setting/?$ 				index.php?com=setting [QSA]

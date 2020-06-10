@@ -64,7 +64,6 @@ if(isLogin()){
 					'phone':$('#txt_phone').val()
 				}
 				$.post(_url,_data,function(req){
-					/*console.log(req);*/
 					if(req=='success'){
 						window.location.reload();
 					}else{

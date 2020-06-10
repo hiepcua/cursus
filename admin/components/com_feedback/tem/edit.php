@@ -5,6 +5,11 @@ require_once('libs/cls.upload.php');
 $obj_upload = new CLS_UPLOAD();
 $file='';
 $GetID = isset($_GET['id']) ? (int)$_GET["id"] : 0;
+$number = SysCount('tbl_feedback', " id=".$GetID);
+if($number == 0){
+	echo 'Không có dữ liệu.'; 
+	return;
+}
 
 if(isset($_POST['cmdsave_tab1']) && $_POST['txt_name']!='') {
 	$Title 			= isset($_POST['txt_name']) ? addslashes($_POST['txt_name']) : '';

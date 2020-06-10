@@ -1,5 +1,5 @@
 <?php
-$strWhere=" AND is_trash=0 ";
+$strWhere=" AND is_trash=1 ";
 $get_q = isset($_GET['q']) ? antiData($_GET['q']) : '';
 
 /*Gán strWhere*/
@@ -55,7 +55,7 @@ $cur_page=(int)$_SESSION['CUR_PAGE_'.OBJ_PAGE]>0 ? $_SESSION['CUR_PAGE_'.OBJ_PAG
 					<div class="col-sm-2"><button type="submit" class="btn btn-primary">Tìm kiếm</button></div>
 					<div class="col-sm-4"></div>
 					<div class="col-sm-2">
-						<a href="<?php echo ROOTHOST.COMS;?>/trash" class="btn btn-primary float-sm-right">Trash</a>
+						<a href="<?php echo ROOTHOST.COMS;?>" class="btn btn-primary float-sm-right">Danh sách</a>
 					</div>
 				</div>
 			</form>
@@ -67,12 +67,11 @@ $cur_page=(int)$_SESSION['CUR_PAGE_'.OBJ_PAGE]>0 ? $_SESSION['CUR_PAGE_'.OBJ_PAG
 						<tr>
 							<th width="30" align="center">#</th>
 							<!-- <th width="30" align="center"><input type="checkbox" name="chkall" id="chkall" value="" onclick="docheckall('chk',this.checked);" /></th> -->
-							<th width="30" align="center">Trash</th>
+							<th width="30" align="center">Xóa</th>
 							<th width="180">Username</th>
 							<th>Fullname</th>
 							<th>Phone</th>
 							<th>Email</th>
-							<th width="80" class="text-center">Hiển thị</th>
 							<th width="80px">Chi tiết</th>
 						</tr>
 					</thead>
@@ -88,19 +87,15 @@ $cur_page=(int)$_SESSION['CUR_PAGE_'.OBJ_PAGE]>0 ? $_SESSION['CUR_PAGE_'.OBJ_PAG
 								$fullname = $r['fullname'];
 								$phone = $r['phone'];
 								$email = $r['email'];
-								if($r['isactive'] == 1) 
-									$icon_active    = "<i class='fas fa-toggle-on cgreen'></i>";
-								else $icon_active   = '<i class="fa fa-toggle-off cgray" aria-hidden="true"></i>';
 								?>
 								<tr>
 									<td><?php echo $stt;?></td>
 									<!-- <td width="30" align="center"><input type="checkbox" name="chk" onclick="docheckonce('chk');" value="$ids"/></td> -->
-									<td align="center"><a href="<?php echo ROOTHOST.COMS.'/trash/'.$r['id'];?>" onclick="return confirm('Bạn có chắc muốn xóa ?')"><i class="fa fa-trash cred" aria-hidden="true"></i></a></td>
+									<td align="center"><a href="<?php echo ROOTHOST.COMS.'/delete/'.$r['id'];?>" onclick="return confirm('Bạn có chắc muốn xóa ?')"><i class="fa fa-trash cred" aria-hidden="true"></i></a></td>
 									<td><?php echo $r['username'];?></td>
 									<td><?php echo $fullname;?></td>
 									<td><?php echo $phone;?></td>
 									<td><?php echo $email;?></td>
-									<td align='center'><a href="<?php echo ROOTHOST.COMS.'/active/'.$r['id'];?>"><?php echo $icon_active;?></a></td>
 									<td class="text-center"><a href="<?php echo ROOTHOST.COMS.'/edit/'.$r['id'];?>"><i class="fas fa-edit cblue"></i></a></td>
 								</tr>
 							<?php }

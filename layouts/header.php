@@ -7,8 +7,8 @@
 		<span class="collapse_menu--label"></span>
 	</button>
 	<div class="main_logo" id="logo">
-		<a href="index.html"><img src="images/logo.svg" alt=""></a>
-		<a href="index.html"><img class="logo-inverse" src="images/ct_logo.svg" alt=""></a>
+		<a href="home"><img src="images/logo.svg" alt=""></a>
+		<a href="home"><img class="logo-inverse" src="images/ct_logo.svg" alt=""></a>
 	</div>
 	<div class="search120">
 		<div class="ui search">
@@ -24,7 +24,7 @@
 				<a href="create_new_course.html" class="upload_btn">Create New Course</a>
 			</li>
 			<!-- <li>
-				<a href="index.html" class="option_links"><i class='uil uil-home-alt'></i><span class="noti_count">9+</span></a>
+				<a href="home" class="option_links"><i class='uil uil-home-alt'></i><span class="noti_count">9+</span></a>
 			</li>
 			<li class="ui dropdown">
 				<a href="#" class="option_links"><i class='uil uil-envelope-alt'></i><span class="noti_count">3</span></a>
@@ -129,10 +129,18 @@
 					<!-- <a href="membership.html" class="item channel_item">Paid Memberships</a> -->
 					<a href="setting.html" class="item channel_item">Setting</a>
 					<a href="help.html" class="item channel_item">Help</a>
-					<a href="feedback.php" class="item channel_item">Send Feedback</a>
-					<a href="sign_in.html" class="item channel_item">Sign Out</a>
+					<a href="feedback" class="item channel_item">Send Feedback</a>
+					<a href="#" onclick="logout();" class="item channel_item">Sign Out</a>
 				</div>
 			</li>
 		</ul>
 	</div>
 </header>
+<script type="text/javascript">
+	function logout(){
+		var _url="ajaxs/mem/logout.php";
+		$.get(_url,function(){
+			window.location.reload();
+		});
+	};
+</script>

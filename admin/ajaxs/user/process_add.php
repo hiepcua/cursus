@@ -19,6 +19,10 @@ if(isLogin()){
 	$arr['group']=$group;
 	$pass="123456";
 	if($arr['username']!='' && $pass!=''){
+		/*Check username exit*/
+		$number = SysCount('tbl_users', " AND username='".$arr['username']."'");
+		if($number > 0) die("Email already exits.");
+
 		$arr['password']=hash('sha256',$arr['username']).'|'.hash('sha256',md5($pass));
 		SysAdd('tbl_users',$arr);
 		die('success');

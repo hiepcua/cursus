@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2020-06-09 18:01:08
+Date: 2020-06-10 17:22:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -110,6 +110,7 @@ CREATE TABLE `tbl_configsite` (
   `tel` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
   `fax` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `email` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `notification` int(11) DEFAULT NULL,
   `work_time` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `website` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `banner` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -127,13 +128,15 @@ CREATE TABLE `tbl_configsite` (
   `gplus` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
   `facebook` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
   `youtube` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `email_notification` int(11) DEFAULT NULL,
+  `sms_notification` int(11) DEFAULT NULL,
   PRIMARY KEY (`config_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of tbl_configsite
 -- ----------------------------
-INSERT INTO `tbl_configsite` VALUES ('1', '0', 'LOICHOI.XYZ', 'LOICHOI.XYZ |  Ngang như cua', '', 'Hà Nội', '096.954.9903', '096.954.9903  |  096.954.9903', '', 'tranviethiepdz@gmail.com', '8:00 - 17:30, Thứ Hai - Chủ Nhật', '', '', '', 'Loi choi, ngang như cua', 'LOICHOI.XYZ |  Ngang như cua - Thông tin mới nhất, cập nhập liên tục trong 24h', '0', '', '', '', '', '', '', 'https://twitter.com/', 'https://plus.google.com/?hl=vi', 'https://www.facebook.com/', 'https://www.youtube.com/');
+INSERT INTO `tbl_configsite` VALUES ('1', '0', '', 'ClassHub', '', 'Văn phòng 5g Media Kim Mã - Hà Nội', '096.954.9903', '096.954.9903  |  096.954.9903', '', 'tranviethiepdz@gmail.com', '0', '8:00 - 17:30, Thứ Hai - Chủ Nhật', '', '', '', 'classhub, họp online, họp trực tuyến, meeting online', 'ClassHub - phần mềm họp trực tuyến', '0', '', '', '', '', '', '', 'https://twitter.com/', 'https://plus.google.com/?hl=vi', 'https://www.facebook.com/', 'https://www.youtube.com/', '30', '15');
 
 -- ----------------------------
 -- Table structure for tbl_contact
@@ -299,29 +302,6 @@ INSERT INTO `tbl_gmember` VALUES ('11', '2', 'Order Manager', '', '1', '1');
 INSERT INTO `tbl_gmember` VALUES ('13', '1', 'Public', 'ai cũng có quyền truy cập', '1', '1');
 
 -- ----------------------------
--- Table structure for tbl_guser
--- ----------------------------
-DROP TABLE IF EXISTS `tbl_guser`;
-CREATE TABLE `tbl_guser` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `par_id` int(11) DEFAULT 0,
-  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `intro` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `isadmin` int(11) DEFAULT 1,
-  `path` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `isactive` int(11) DEFAULT 1,
-  PRIMARY KEY (`id`),
-  KEY `idx_active` (`isactive`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC;
-
--- ----------------------------
--- Records of tbl_guser
--- ----------------------------
-INSERT INTO `tbl_guser` VALUES ('1', '0', 'Origin', '', '1', '1', '1');
-INSERT INTO `tbl_guser` VALUES ('2', '1', 'Team công nghệ', '', '1', '1_2', '1');
-INSERT INTO `tbl_guser` VALUES ('3', '1', 'Viện Toán Cao Cấp', '', '1', '1_3', '1');
-
--- ----------------------------
 -- Table structure for tbl_mail_config
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_mail_config`;
@@ -346,13 +326,82 @@ INSERT INTO `tbl_mail_config` VALUES ('1', 'admin', 'yourdomain.com', 'info@your
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_member`;
 CREATE TABLE `tbl_member` (
-  `mem_id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(300) DEFAULT NULL,
+  `fullname` varchar(50) DEFAULT NULL,
+  `phone` varchar(11) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `avatar` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mtype` varchar(50) DEFAULT NULL,
+  `gsecret` varchar(50) DEFAULT NULL,
+  `isfa2` tinyint(4) DEFAULT 0,
+  `cdate` int(11) DEFAULT NULL,
+  `isadmin` tinyint(4) DEFAULT 0,
+  `cuser` varchar(50) DEFAULT NULL,
+  `is_trash` tinyint(4) DEFAULT 0,
+  `isactive` tinyint(4) DEFAULT 1,
+  `gmember` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tbl_member
+-- ----------------------------
+INSERT INTO `tbl_member` VALUES ('1', 'anhnh@vscvietnam.vn', '20aabae3392c620ed033f7cd1cb5c8c7ca1d9d418db49dee6e91249ab6f043ee|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Anh NH', '', 'anhnh@vscvietnam.vn', null, null, null, '0', '1587472317', '0', null, '1', '1', '2');
+INSERT INTO `tbl_member` VALUES ('2', 'anhpt@vscvietnam.vn', 'fef8ffadfe02e6a1d2be10b8e9ae331ba38f8f3218e54c46e3b80e8ca669dc65|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Phan Anh', '0981964139', 'anhpt@vscvietnam.vn', '', null, null, '0', '1587472239', '0', null, '1', '1', '2');
+INSERT INTO `tbl_member` VALUES ('3', 'Cuong123@gmail.com', '0c152812bf37192d634c421f3d2bc49a7b57f8b8b9c42d8f443ac2e3c0518cee|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Trần Đức Cương', '0389937523', 'tranduccuonghuna@gmail.com', '', null, null, '0', '1587044768', '0', null, '0', '1', '2');
+INSERT INTO `tbl_member` VALUES ('4', 'cuongnv@vscvietnam.vn', '09887444e632db3c253f2f14c1ec137bba7686f274a30f1a32a409e67690c80b|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Nguyen Van Cuong', '', 'cuongnv@vscvietnam.vn', null, null, null, '0', '1587472149', '0', null, '0', '1', '2');
+INSERT INTO `tbl_member` VALUES ('5', 'dinhngoccuong2013@gmail.com', '104e2ad1ca490269f459d92ff80c5ca5fc1a6073310e9df35938403dcb94e421|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Đinh Ngọc Cương', '', 'dinhngoccuong2013@gmail.com', null, null, null, '0', '1587090965', '0', null, '0', '1', '2');
+INSERT INTO `tbl_member` VALUES ('6', 'DungHuna@gmail.com', 'ba9f969cdf6aa7666923d502a3c6f52263a7537abe56f8869f8ef56759ae3b5f|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Đỗ Văn Dũng', '0983000048', 'myman.noone@gmail.com', '', null, null, '0', '1587044724', '0', null, '0', '1', '2');
+INSERT INTO `tbl_member` VALUES ('7', 'dungpv@vscvietnam.vn', '7b20213e5573a4cbfa1f02162521ce6396de7d55d24de7dd088b7a1d599be582|caed2fa7d3cccf95f9af02ec3da391981cc59575b316f1d05ab8fb1d75021144', 'Dũng', '', 'dungpv@vscvietnam.vn', null, null, null, '0', '1587472300', '0', null, '0', '1', '2');
+INSERT INTO `tbl_member` VALUES ('8', 'hienltt@vscvietnam.vn', '074c7a985ad7a02d8d1d24706cd8baffc56b7721995c23e1125de8bb3b64fad7|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Hien', '', 'hienltt@vscvietnam.vn', null, null, null, '0', '1587472350', '0', null, '0', '1', '2');
+INSERT INTO `tbl_member` VALUES ('9', 'hoanghungitvn@gmail.com', '1966e22de0d691cb6d879afdd24981c254ce6bb0a1663905c973cea83c791c8d|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Hoàng Hưng IT', '0936831277', 'hoanghungitvn@gmail.com', null, null, null, '0', '1587178684', '0', null, '0', '1', '2');
+INSERT INTO `tbl_member` VALUES ('10', 'hoangnguyenbrvt2012@gmail.com', 'ba6c92f82dbd778cfca5f222c889117bb404ef5281de6bbb983ce28915929656|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Hoàng Mai', '', 'hoangnguyenbrvt2012@gmail.com', null, null, null, '0', '1587091768', '0', null, '0', '1', '3');
+INSERT INTO `tbl_member` VALUES ('11', 'hoangnguyenvt2018@gmail.com', '7e2b53601862791cf90288e58ab91fdab6ff10390e627ca5786df9f34547062f|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Mai Hằng', '0937673799', 'hoangnguyenvt2018@gmail.com', null, null, null, '0', '1587087039', '0', null, '0', '1', '3');
+INSERT INTO `tbl_member` VALUES ('12', 'lainth@vscvietnam.vn', '31e4a357b2f4a9bd0a543d107939e172221e64873e2cd6680163152d057c6358|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Lai', '0912920984', 'lainth@vscvietnam.vn', '', null, null, '0', '1587472440', '0', null, '0', '1', '3');
+INSERT INTO `tbl_member` VALUES ('13', 'lapvt@vscvietnam.vn', '5a172d8f75cb2ca51921d05456570cad538207627a3f7b90903ffcc8547960b1|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Tran Van Lap', '', 'lapvt@vscvietnam.vn', null, null, null, '0', '1587471868', '0', null, '0', '1', '3');
+INSERT INTO `tbl_member` VALUES ('14', 'linhptt2016@gmail.com', '7dfa6145b5406c38e33c4ab81e7fb4c7b138dba054f58fa2d3acf6b3136b7c50|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Phạm Linh', '', 'linhptt2016@gmail.com', null, null, null, '0', '1587094097', '0', null, '0', '1', '3');
+INSERT INTO `tbl_member` VALUES ('15', 'lyht@vscvietnam.vn', '676cf2d938c761c17be7b6f82396bd814b4a8159bcb99d50188c0e1358b3fbd7|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Ly HT', '', 'lyht@vscvietnam.vn', null, null, null, '0', '1587472479', '0', null, '0', '1', '3');
+INSERT INTO `tbl_member` VALUES ('16', 'minhtranhai78@gmail.com', '78c2e826b43da62fea07a8684c1d78690b9b0ee7fc2a6fa56214eab2259e73ae|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Trần Hải Minh', '', 'minhtranhai78@gmail.com', null, null, null, '0', '1587091514', '0', null, '0', '1', '4');
+INSERT INTO `tbl_member` VALUES ('17', 'ncthanh@anninh.tv', 'b5e7e9c6d550d8c0d6a90fc2dfe01bfd62df16ce796b2ab73221b4add2867d7c|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Thành', '1292303932', 'ncthanh@anninh.tv', null, null, null, '0', '1586661431', '0', null, '0', '1', '4');
+INSERT INTO `tbl_member` VALUES ('18', 'ngaktt@vscvietnam.vn', '8b8c55d906e2b987dc777add7b5aa8c34d0d4dc08bed5dc0bf1e678af0aa2344|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Nga', '', 'ngaktt@vscvietnam.vn', null, null, null, '0', '1587472266', '0', null, '0', '1', '4');
+INSERT INTO `tbl_member` VALUES ('19', 'ngockhoa201090@gmail.com', 'e34d7687ab2a346b3b0c9853399f3664c89c77c711818f16def882cb28f0cdca|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Ngọc Khoa', '', 'ngockhoa201090@gmail.com', null, null, null, '0', '1587095742', '0', null, '0', '1', '4');
+INSERT INTO `tbl_member` VALUES ('20', 'nhungttm@vscvietnam.vn', '2f39fe8a378f8488b1dfd8f44b34e4ff9ae7b26bcfe491cdbc6fa51ad6f41eac|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Nhung', '', 'nhungttm@vscvietnam.vn', null, null, null, '0', '1587472188', '0', null, '0', '1', '5');
+INSERT INTO `tbl_member` VALUES ('21', 'npthanh9229@gmail.com', '8a5eddb6e53ff21274579920cbf93f10697319f3f350d77e7bd9876dd6bb1ef4|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Phương Thanh', '', 'npthanh9229@gmail.com', null, null, null, '0', '1587093017', '0', null, '0', '1', '5');
+INSERT INTO `tbl_member` VALUES ('22', 'nxtuyen.pro@gmail.com', 'a25342213446980b5f750b37daed053ce347ec766265b78aa81d90c8217e5e39|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Nguyễn Xuân Tuyền', '0936831277', 'nxtuyen.pro@gmail.com', null, '', null, '0', '1586660652', '1', null, '0', '1', '1');
+INSERT INTO `tbl_member` VALUES ('23', 'phamlinhsp@gmail.com', '5d465fdd91e4a585afba81e368e0d6f80ece6ec31dce558f264d2a950d2926a2|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Phạm Linh', '0362565679', 'phamlinhsp@gmail.com', null, null, null, '0', '1587087327', '0', null, '0', '1', '5');
+INSERT INTO `tbl_member` VALUES ('24', 'Phandinhan0491@gmail.com', '2d9b5102052379f11d421b04b2b8128a8bd1beda8662184126255e1bc203ea17|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Phan An', '', 'Phandinhan0491@gmail.com', null, null, null, '0', '1587090798', '0', null, '0', '1', '5');
+INSERT INTO `tbl_member` VALUES ('25', 'quangctm07@gmail.com', 'f0ad0d80288b2d44b57f67afc66dff648d9b3908dd7de136d20b8e3d8ec3b6aa|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Quang CTM', '', 'quangctm07@gmail.com', null, null, null, '0', '1587090851', '0', null, '0', '1', '6');
+INSERT INTO `tbl_member` VALUES ('26', 'samnt@vscvietnam.vn', '42a1f78def3b5dac0feb5160f50306d9779305340656dd41264148dfea044781|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Sam', '', 'samnt@vscvietnam.vn', null, null, null, '0', '1587472217', '0', null, '0', '1', '6');
+INSERT INTO `tbl_member` VALUES ('27', 'sp.invesco@gmail.com', '4d72af41f3dc7ce5051063d522b49ae127e446c06612e016ae9e45a5c7a0444d|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Nguyễn Phương Thanh', '', 'sp.invesco@gmail.com', null, null, null, '0', '1587087482', '0', null, '0', '1', '6');
+INSERT INTO `tbl_member` VALUES ('28', 'tamnk@gmail.com', 'f05ae7bd5befac5fe99b6742b4ccaf334d14e84e3e15e8391fe137a7b1e5f627|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Nguyễn Khải Tâm', '0936831277', 'tamnk@gmail.com', null, null, null, '0', '1586791571', '0', null, '0', '1', '6');
+INSERT INTO `tbl_member` VALUES ('29', 'Thanh.mobitv@gmail.com', '3d544e4d18c61f37a2e4c550817ffe4435e02f93a5746f9bf0967ea7d67f8490|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Nguyễn Chí Thành', '123456789', 'Thanh.mobitv@gmail.com', '', null, null, '0', '1586660652', '1', null, '0', '1', '1');
+INSERT INTO `tbl_member` VALUES ('30', 'thietbigiaoducthanhhoa@gmail.com', 'c6131302aaf62e4ab34e675198d7890811d39626ffd366ea64581e365df29ba5|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Nguyễn Thành Vinh', '0913402656', 'thietbigiaoducthanhhoa@gmail.com', null, null, null, '0', '1587087130', '0', null, '0', '1', '6');
+INSERT INTO `tbl_member` VALUES ('31', 'thp_electric@yahoo.com', '4d7f30148f127b92892f63358b94046ba7592dfdc72985f4b55383bdad72b6f6|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Trần Chi Mai', '0966155937', 'thp_electric@yahoo.com', null, null, null, '0', '1587086833', '0', null, '0', '1', '6');
+INSERT INTO `tbl_member` VALUES ('32', 'thuynt87@gmail.com', '40612fa30936ebd0a7fbe2259d4f621826f7fe6ee08ee73b4993e799f9c4e8e2|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Nguyễn Thị Thủy', '0936831277', 'thuynt87@gmail.com', null, '', null, '0', '1586597498', '0', null, '0', '1', '4');
+INSERT INTO `tbl_member` VALUES ('33', 'tranghm@vscvietnam.vn', '5287b33fa327c657a3c42d427b3574dca3afe24e31b5f23022070819d2cdad03|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Trang', '', 'tranghm@vscvietnam.vn', null, null, null, '0', '1587471934', '0', null, '0', '1', '4');
+INSERT INTO `tbl_member` VALUES ('34', 'tranviethiep69@gmail.com', '13f689cfd254f8c05c0da3619d34ac3b36d2bc1a75acf335b6794678811eb368|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Trần Hiệp 2', '0969549903', 'tranviethiep69@gmail.com', null, null, null, '0', '1586950538', '0', null, '0', '1', '2');
+INSERT INTO `tbl_member` VALUES ('35', 'tranviethiep94@gmail.com', 'c229c8812d654b8d8db9d02d2fc3b6a787bb8ca860545e7617e39eddb75c0fc4|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Hiệp Cua', '0969549903', 'tranviethiep94@gmail.com', null, null, null, '0', '1589338143', '0', null, '0', '1', '2');
+INSERT INTO `tbl_member` VALUES ('36', 'tranviethiepdz@gmail.com', 'd93fc24a5f68f2d6621e2d3aff26b5600f38f1b6876ff04f0070b38a54b2d2f8|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Trần Viết Hiệp', '0959549999', 'tranduccuonghuna@gmail.com', 'global/img/avatar/893329363181548791590641481855977312485376n.jpg', null, null, '0', '1586660691', '1', null, '0', '1', '2');
+INSERT INTO `tbl_member` VALUES ('37', 'ttmphuong22294@gmail.com', '08339d8e82fab824d28c7a22d6b38c2fda5404000ff78b9cfd817e70084d973e|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Trần Thị Minh Phương', '0943355507', 'ttmphuong22294@gmail.com', null, null, null, '0', '1587087208', '0', null, '0', '1', '4');
+INSERT INTO `tbl_member` VALUES ('38', 'tuntt@vscvietnam.vn', '52849a561c3b83bd1eccf5d10190f32abcfd086e2c18b68a3e7ff0b5cb421f82|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Tu', '', 'tuntt@vscvietnam.vn', null, null, null, '0', '1587472123', '0', null, '0', '1', '4');
+INSERT INTO `tbl_member` VALUES ('39', 'tuyennv@vscvietnam.vn', '374b04fd1654767ce8da55877447094d168fd92472312e222fac23f0dc7e5e95|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Nguyễn Văn Tuyển', '', 'tuyennv@vscvietnam.vn', null, null, null, '0', '1587471832', '0', null, '0', '1', '5');
+INSERT INTO `tbl_member` VALUES ('40', 'van1@gmail.com', '768f8fd5a04db0c590a506e196bf2ac0bc04bd4ae5fea9a94082d1568c313974|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Nguyễn Văn A', '123456', 'van1@gmail.com', null, null, null, '0', '1586921370', '0', null, '0', '1', '5');
+INSERT INTO `tbl_member` VALUES ('41', 'vuquoctrung@gmail.com', 'ced7a21182b5d8340544f804ebf5b63ac29e23af40a9e6ef2538db556fee5b4b|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Trung Vũ', '', 'vuquoctrung@gmail.com', null, null, null, '0', '1586660670', '1', null, '0', '1', '2');
+
+-- ----------------------------
+-- Table structure for tbl_member1
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_member1`;
+CREATE TABLE `tbl_member1` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `firstname` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `lastname` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `birthday` date NOT NULL,
-  `gender` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `birthday` int(11) NOT NULL,
+  `gender` tinyint(1) NOT NULL,
   `address` text COLLATE utf8_unicode_ci NOT NULL,
   `phone` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `mobile` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -361,15 +410,15 @@ CREATE TABLE `tbl_member` (
   `lastlogin` datetime NOT NULL,
   `gmem_id` int(11) NOT NULL,
   `isactive` int(11) NOT NULL DEFAULT 1,
-  PRIMARY KEY (`mem_id`),
+  PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   KEY `idx_active` (`isactive`)
 ) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
--- Records of tbl_member
+-- Records of tbl_member1
 -- ----------------------------
-INSERT INTO `tbl_member` VALUES ('6', 'igf', 'b069f1ce2c5e6ad7776d36dd87d75948', 'JSC', 'IGF', '2012-09-16', '0', 'Hà nội', '0936831277', '0936831277', 'nxtuyen.pro@gmail.com', '2011-11-14 05:28:11', '2019-09-04 06:57:15', '1', '1');
+INSERT INTO `tbl_member1` VALUES ('6', 'igf', 'b069f1ce2c5e6ad7776d36dd87d75948', 'JSC', 'IGF', '-2147483648', '0', 'Hà nội', '0936831277', '0936831277', 'nxtuyen.pro@gmail.com', '2011-11-14 05:28:11', '2019-09-04 06:57:15', '1', '1');
 
 -- ----------------------------
 -- Table structure for tbl_member_login
@@ -1005,10 +1054,10 @@ CREATE TABLE `tbl_tags` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for tbl_user
+-- Table structure for tbl_users
 -- ----------------------------
-DROP TABLE IF EXISTS `tbl_user`;
-CREATE TABLE `tbl_user` (
+DROP TABLE IF EXISTS `tbl_users`;
+CREATE TABLE `tbl_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `password` varchar(300) DEFAULT NULL,
@@ -1024,17 +1073,42 @@ CREATE TABLE `tbl_user` (
   `cuser` varchar(50) DEFAULT NULL,
   `is_trash` tinyint(4) DEFAULT 0,
   `isactive` tinyint(4) DEFAULT 1,
-  `gmember` int(11) DEFAULT NULL,
+  `group` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of tbl_user
+-- Records of tbl_users
 -- ----------------------------
-INSERT INTO `tbl_user` VALUES ('1', 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Trung Vu', '', 'vuquoctrung@gmail.com', null, null, null, '0', '1587472239', '1', null, '0', '1', '2');
-INSERT INTO `tbl_user` VALUES ('2', 'nguyenchithanh', '8fe7cd18285b959df703708ffef8ba7daac1b0236257bc0748967e755f4a52c2|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Nguyễn Chí Thành', '', 'thanhems@gmail.com', null, null, null, '0', '1587472239', '0', null, '0', '1', '2');
-INSERT INTO `tbl_user` VALUES ('3', 'nxtuyen.pro@gmail.com', 'a25342213446980b5f750b37daed053ce347ec766265b78aa81d90c8217e5e39|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Nguyễn Xuân Tuyền', '0936831277', 'nxtuyen.pro@gmail.com', null, '', null, '0', '1586660652', '1', null, '0', '1', '2');
-INSERT INTO `tbl_user` VALUES ('4', 'vuquoctrung@gmail.com', 'ced7a21182b5d8340544f804ebf5b63ac29e23af40a9e6ef2538db556fee5b4b|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Trung Vũ', '', 'vuquoctrung@gmail.com', null, null, null, '0', '1586660670', '1', null, '0', '1', '2');
+INSERT INTO `tbl_users` VALUES ('1', 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Trung Vu', '', 'vuquoctrung@gmail.com', null, null, null, '0', '1587472239', '1', null, '0', '1', '2');
+INSERT INTO `tbl_users` VALUES ('2', 'nguyenchithanh', '8fe7cd18285b959df703708ffef8ba7daac1b0236257bc0748967e755f4a52c2|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Nguyễn Chí Thành', '', 'thanhems@gmail.com', null, null, null, '0', '1587472239', '0', null, '0', '1', '2');
+INSERT INTO `tbl_users` VALUES ('3', 'nxtuyen.pro@gmail.com', 'a25342213446980b5f750b37daed053ce347ec766265b78aa81d90c8217e5e39|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Nguyễn Xuân Tuyền', '0936831277', 'nxtuyen.pro@gmail.com', null, '', null, '0', '1586660652', '1', null, '0', '1', '2');
+INSERT INTO `tbl_users` VALUES ('4', 'vuquoctrung@gmail.com', 'ced7a21182b5d8340544f804ebf5b63ac29e23af40a9e6ef2538db556fee5b4b|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Trung Vũ', '', 'vuquoctrung@gmail.com', null, null, null, '0', '1586660670', '1', null, '0', '1', '2');
+INSERT INTO `tbl_users` VALUES ('5', 'tranviethiep69@gmail.com', '13f689cfd254f8c05c0da3619d34ac3b36d2bc1a75acf335b6794678811eb368|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Hiệp Cua', '096.954.990', 'tranviethiep69@gmail.com', null, null, null, '0', '1591765316', '0', null, '0', '1', '3');
+INSERT INTO `tbl_users` VALUES ('7', 'tranviethiepdz@gmail.com', 'd93fc24a5f68f2d6621e2d3aff26b5600f38f1b6876ff04f0070b38a54b2d2f8|cdf4a007e2b02a0c49fc9b7ccfbb8a10c644f635e1765dcf2a7ab794ddc7edac', 'Trần Hiệp', '096.954.990', 'tranviethiepdz@gmail.com', null, null, null, '0', '1591765699', '1', null, '0', '1', '2');
+
+-- ----------------------------
+-- Table structure for tbl_user_group
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_user_group`;
+CREATE TABLE `tbl_user_group` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `par_id` int(11) DEFAULT 0,
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `intro` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `isadmin` int(11) DEFAULT 1,
+  `path` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `isactive` int(11) DEFAULT 1,
+  PRIMARY KEY (`id`),
+  KEY `idx_active` (`isactive`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci CHECKSUM=1 DELAY_KEY_WRITE=1 ROW_FORMAT=DYNAMIC;
+
+-- ----------------------------
+-- Records of tbl_user_group
+-- ----------------------------
+INSERT INTO `tbl_user_group` VALUES ('1', '0', 'Origin', '', '1', '1', '1');
+INSERT INTO `tbl_user_group` VALUES ('2', '1', 'Group user 1', '', '1', '1_2', '1');
+INSERT INTO `tbl_user_group` VALUES ('3', '1', 'Group user 2', '', '1', '1_3', '1');
 
 -- ----------------------------
 -- Table structure for tbl_user_login
@@ -1048,13 +1122,15 @@ CREATE TABLE `tbl_user_login` (
   `isactive` tinyint(4) DEFAULT 1,
   PRIMARY KEY (`id`),
   KEY `idx` (`isactive`,`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of tbl_user_login
 -- ----------------------------
 INSERT INTO `tbl_user_login` VALUES ('1', 'admin', '1591690731', '1591690731', '1');
 INSERT INTO `tbl_user_login` VALUES ('2', 'nxtuyen.pro@gmail.com', '1591700044', '1591700044', '1');
+INSERT INTO `tbl_user_login` VALUES ('3', 'nxtuyen.pro@gmail.com', '1591764184', '1591764184', '1');
+INSERT INTO `tbl_user_login` VALUES ('4', 'tranviethiepdz@gmail.com', '1591772275', '1591772275', '1');
 
 -- ----------------------------
 -- Table structure for tbl_video
