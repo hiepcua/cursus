@@ -52,8 +52,8 @@ define('SMTP_USER','hoangtucoc321@gmail.com');
 define('SMTP_PASS','nsn2651984');
 define('SMTP_MAIL','hoangtucoc321@gmail.com');
 
-define('SITE_NAME','5G.OTT');
-define('SITE_TITLE','5G.OTT');
+define('SITE_NAME','CURSUS');
+define('SITE_TITLE','CURSUS');
 define('SITE_DESC','');
 define('SITE_KEY','');
 define('SITE_IMAGE','');
